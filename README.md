@@ -1,0 +1,2 @@
+# Vending Machine
+New version of the vending machine, a classic assignment from the algorithms course in the first semester of computer science at PUCPR, now made in Java with an amazing graphic interface. Come get your fuzzy drinks!
