@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Currency {
 	public enum CurrencyType{ bill, coin}
+	private int quantityAvailable;
 	private String name;
 	private int value;
 	private int divider;
@@ -12,17 +13,17 @@ public class Currency {
 	
 	// Defines the available bills
 	static {
-		availableBills.add(new Currency("Um Centavo", 5, 100, CurrencyType.coin));
-		availableBills.add(new Currency("Cinco Centavos", 5, 100, CurrencyType.coin));
-		availableBills.add(new Currency("Dez Centavos", 10, 100, CurrencyType.coin));
-		availableBills.add(new Currency("Vinte e Cinco Centavos", 25, 100, CurrencyType.coin));
-		availableBills.add(new Currency("Cinquenta Centavos", 5, 10, CurrencyType.coin));
-		availableBills.add(new Currency("Um Real", 1, 1, CurrencyType.coin));
-		availableBills.add(new Currency("Dois Reais", 2, 1, CurrencyType.bill));
-		availableBills.add(new Currency("Cinco Reais", 5, 1, CurrencyType.bill));
-		availableBills.add(new Currency("Dez Reais", 10, 1, CurrencyType.bill));
-		availableBills.add(new Currency("Cinquenta Reais", 50, 1, CurrencyType.bill));
-		availableBills.add(new Currency("Cem Reais", 100, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Um Centavo", 5, 100, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Cinco Centavos", 5, 100, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Dez Centavos", 10, 100, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Vinte e Cinco Centavos", 25, 100, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Cinquenta Centavos", 5, 10, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Um Real", 1, 1, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Dois Reais", 2, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cinco Reais", 5, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Dez Reais", 10, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cinquenta Reais", 50, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cem Reais", 100, 1, CurrencyType.bill));
 
 	}
 	
@@ -33,7 +34,7 @@ public class Currency {
 
 	}
 	
-	public Currency(String name, int value, int divider, CurrencyType currencyType) {
+	public Currency(int quantityAvailable, String name, int value, int divider, CurrencyType currencyType) {
 		this.name = name;
 		this.value = value;
 		this.divider = divider;
@@ -58,5 +59,13 @@ public class Currency {
 
 	public CurrencyType getCurrencyType() {
 		return currencyType;
+	}
+
+	public int getQuantityAvailable() {
+		return quantityAvailable;
+	}
+
+	public void setQuantityAvailable(int quantityAvailable) {
+		this.quantityAvailable = quantityAvailable;
 	}
 }
