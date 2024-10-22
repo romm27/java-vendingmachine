@@ -13,6 +13,22 @@ public class Product {
         this.stock = stock;
     }
     
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price; // probably will have to multiply by 100
+	}
+	
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+    
     public boolean isAvailable() {
     	return this.stock > 0;   	
     }
@@ -25,11 +41,15 @@ public class Product {
     	return brand;
     }
     
+    public float getPrice() {
+    	return price/100;
+    }
+    
     public int getStock() {
     	return stock;
     }
     
-    public float getPrice() {
-    	return price/100;
+    public void decreaseStock() {
+    	stock -= 1;
     }
 }
