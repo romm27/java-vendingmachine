@@ -1,14 +1,19 @@
 package vending_machine;
 
+import vending_machine.Currency.CurrencyType;
+
 public class Product {
 	private String name;
 	private String brand;
-	private int price;
-	private int stock;
+	public enum ProductType { food, beverage }
+	private ProductType productType; 
+	private int price; 
+	private int stock; 
 	
-    public Product(String name, String brand, int price, int stock) {
+    public Product(String name, String brand, ProductType productType, int price, int stock) {
         this.name = name;
         this.brand = brand;
+        this.productType = productType;
         this.price = price;
         this.stock = stock;
     }
@@ -22,13 +27,17 @@ public class Product {
 	}
 	
 	public void setPrice(int price) {
-		this.price = price; // probably will have to multiply by 100
+		this.price = price;
 	}
 	
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-    
+	
+	public void setType(ProductType productType) {
+		this.productType = productType;
+	}
+	
     public boolean isAvailable() {
     	return this.stock > 0;   	
     }
@@ -42,7 +51,7 @@ public class Product {
     }
     
     public float getPrice() {
-    	return price/100;
+    	return (float) price / 100;
     }
     
     public int getStock() {
@@ -50,6 +59,8 @@ public class Product {
     }
     
     public void decreaseStock() {
-    	stock -= 1;
+    	if (stock > 0) {
+    	    stock -= 1;
+    	}
     }
 }

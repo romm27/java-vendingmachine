@@ -7,10 +7,10 @@ public class VendingMachineConsole {
         Scanner scanner = new Scanner(System.in);
         VendingMachine vendingMachine = new VendingMachine();
 
-        Product amendoim = new Product("Amendoim", "Marca A", 250, 10);
-        Product salgadinho = new Product("Salgadinho", "Marca B", 500, 5);
-        Product guarana = new Product("Guaraná Zero", "Marca C", 350, 8);
-        Product cafe = new Product("Café", "Marca D", 150, 20);
+        Product amendoim = new Product("Amendoim", "Marca A", Product.ProductType.food, 250, 10);
+        Product salgadinho = new Product("Salgadinho", "Marca B", Product.ProductType.food, 500, 5);
+        Product guarana = new Product("Guaraná Zero", "Marca C", Product.ProductType.beverage, 350, 8);
+        Product cafe = new Product("Café", "Marca D", Product.ProductType.beverage, 150, 20);
 
         VendingMachine.availableProducts.add(amendoim);
         VendingMachine.availableProducts.add(salgadinho);
