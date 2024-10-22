@@ -5,7 +5,19 @@ public class VendingMachineConsole {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean menu = true;  
+        VendingMachine vendingMachine = new VendingMachine();
+
+        Product amendoim = new Product("Amendoim", "Marca A", 250, 10);
+        Product salgadinho = new Product("Salgadinho", "Marca B", 500, 5);
+        Product guarana = new Product("Guaraná Zero", "Marca C", 350, 8);
+        Product cafe = new Product("Café", "Marca D", 150, 20);
+
+        VendingMachine.availableProducts.add(amendoim);
+        VendingMachine.availableProducts.add(salgadinho);
+        VendingMachine.availableProducts.add(guarana);
+        VendingMachine.availableProducts.add(cafe);
+
+        boolean menu = true;
 
         while (menu) {
             System.out.println("\n--- MENU ---"
@@ -18,26 +30,35 @@ public class VendingMachineConsole {
 
             int option = scanner.nextInt();
 
-            switch (option) {
-                case 1:
-                    System.out.println("Você escolheu Amendoim.");
-                    break;
-                case 2:
-                    System.out.println("Você escolheu Salgadinho.");
-                    break;
-                case 3:
-                    System.out.println("Você escolheu Guaraná Zero.");
-                    break;
-                case 4:
-                    System.out.println("Você escolheu Café.");
-                    break;
-                case 5:
-                    System.out.println("Saindo do menu...");
-                    menu = false;
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
+            if (option >= 1 && option <= 4) {
+                System.out.println("Realize o pagamento: "); // Modify later
+                double payment = scanner.nextDouble();
+                
+                switch (option) {
+                    case 1:
+                        System.out.println("Você escolheu Amendoim.");
+                        vendingMachine.sell(amendoim, payment);
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu Salgadinho.");
+                        vendingMachine.sell(salgadinho, payment);
+                        break;
+                    case 3:
+                        System.out.println("Você escolheu Guaraná Zero.");
+                        vendingMachine.sell(guarana, payment);
+                        break;
+                    case 4:
+                        System.out.println("Você escolheu Café.");
+                        vendingMachine.sell(cafe, payment);
+                        break;
+                    default:
+                        break;
+                }
+            } else if (option == 5) {
+                System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
+                menu = false;
+            } else {
+                System.out.println("Opção inválida. Tente novamente.");
             }
         }
 
