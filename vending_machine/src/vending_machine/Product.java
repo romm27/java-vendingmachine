@@ -13,14 +13,23 @@ public class Product {
         this.stock = stock;
     }
     
-    public boolean sell() {
-    	// Add later check if there is enough cash
-    	if (this.stock > 0) {
-    		this.stock -= 1;
-    		
-    		return true;
-    	} else { return false; }
+    public boolean isAvailable() {
+    	return this.stock > 0;   	
     }
     
+    public String getName() {
+    	return name;
+    }
     
+    public String getBrand() {
+    	return brand;
+    }
+    
+    public int getStock() {
+    	return stock;
+    }
+    
+    public float getPrice() {
+    	return price/100;
+    }
 }
