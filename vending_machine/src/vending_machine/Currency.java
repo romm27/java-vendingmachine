@@ -13,7 +13,6 @@ public class Currency {
 	
 	// Defines the available bills
 	static {
-		availableBills.add(new Currency(10, "Um Centavo", 1, 100, CurrencyType.coin));
 		availableBills.add(new Currency(10, "Cinco Centavos", 5, 100, CurrencyType.coin));
 		availableBills.add(new Currency(10, "Dez Centavos", 10, 100, CurrencyType.coin));
 		availableBills.add(new Currency(10, "Vinte e Cinco Centavos", 25, 100, CurrencyType.coin));
@@ -29,35 +28,47 @@ public class Currency {
 	}
 	
 	public static void main(String[] args) {
-		printCurrency(availableBills);
+		printCurrency(getChange(395.85));
 	}
 	
-	public static ArrayList<Currency> getExchange(float value){
+	public static ArrayList<Currency> getChange(double value){
 		ArrayList<Currency> temp = new ArrayList<Currency>();
-		
-		for(int i = availableBills.size(); i > 0; i--) {
+		for(int i = availableBills.size() - 1; i > 0; i--) {
 			for(int j = 0; j < availableBills.get(i - 1).quantityInStock; j++) {
-				if(value > availableBills.get(j).value) {
-					value -= availableBills.get(j).value;
-					temp.add(availableBills.get(j));
+				if(value >= availableBills.get(i).getDoubleValue()) {
+					value -= availableBills.get(i).getDoubleValue();
+					temp.add(availableBills.get(i));
 				}
 			}
 		}
 		
-		return temp;
+		if(Math.abs(value) <= 0.01) { //<---- Basically testing if value == 0.
+			//Remove from stock
+			for(int i = 0; i < temp.size();i++) {
+				temp.get(i).quantityInStock -= 1;
+			}
+			return temp;
+		}
+		else {
+			return null;
+		}
 	}
 	
-	public static void printCurrency(ArrayList<Currency> currencyList) {
-		int acumulated = 1;
-		for(int i = 0; i < currencyList.size(); i++) {
-			Currency current = currencyList.get(i);
-			Currency next = (i == (currencyList.size() - 1))? null : currencyList.get(i + 1);
-			if(next == null || current.getDoubleValue() != next.getDoubleValue()) {
-				System.out.printf("%dx - %s" + System.lineSeparator(), acumulated, currencyList.get(i).name);
-				acumulated = 0;
+	public static boolean printCurrency(ArrayList<Currency> currencyList) {
+		boolean valid = currencyList != null &&  currencyList.size() != 0;
+		if(valid) {
+			int acumulated = 1;
+			for(int i = 0; i < currencyList.size(); i++) {
+				Currency current = currencyList.get(i);
+				Currency next = (i == (currencyList.size() - 1))? null : currencyList.get(i + 1);
+				if(next == null || current.getDoubleValue() != next.getDoubleValue()) {
+					System.out.printf("%dx - %s" + System.lineSeparator(), acumulated, currencyList.get(i).name);
+					acumulated = 0;
+				}
+				acumulated += 1;
 			}
-			acumulated += 1;
 		}
+		return valid;
 	}
 	
 	public Currency(int quantityInStock, String name, int value, int divider, CurrencyType currencyType) {
