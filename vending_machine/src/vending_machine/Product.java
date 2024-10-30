@@ -17,16 +17,29 @@ public class Product {
         this.price = price;
         this.stock = stock;
     }
-  	
+    
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	
+	public void setType(ProductType productType) {
+		this.productType = productType;
+	}
+	
     public boolean isAvailable() {
-    	return this.stock > 0;  
-    }
-
-    public Product(String name, String brand, int price, int stock) {
-        this.setName(name);
-        this.brand = brand;
-        this.setPrice(price);
-        this.stock = stock;
+    	return this.stock > 0;   	
     }
     
     public boolean sell() {
@@ -37,6 +50,7 @@ public class Product {
     	} else { return false; }
     }
  
+
     public String getName() {
     	return name;
     }
@@ -53,29 +67,4 @@ public class Product {
     	return stock;
     }
     
-    public void decreaseStock() {
-    	if (stock > 0) {
-    	    stock -= 1;
-    	}
-    }
-    
-  	public void setName(String name) {
-  		this.name = name;
-  	}
-  	
-  	public void setStock(int stock) {
-  		this.stock = stock;
-  	}
-  	
-  	public void setPrice(int price) {
-  		this.price = price;
-  	}
-  	
-  	public void setBrand(String brand) {
-  		this.brand = brand;
-  	}
-  	
-  	public void setType(ProductType productType) {
-  		this.productType = productType;
-  	}
 }
