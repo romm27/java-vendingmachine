@@ -23,8 +23,6 @@ public class Currency {
 		availableBills.add(new Currency(10, "Dez Reais", 10, 1, CurrencyType.bill));
 		availableBills.add(new Currency(10, "Cinquenta Reais", 50, 1, CurrencyType.bill));
 		availableBills.add(new Currency(10, "Cem Reais", 100, 1, CurrencyType.bill));
-		
-
 	}
 	
 	public static void main(String[] args) {
@@ -33,6 +31,7 @@ public class Currency {
 	
 	public static ArrayList<Currency> getChange(double value){
 		ArrayList<Currency> temp = new ArrayList<Currency>();
+		
 		for(int i = availableBills.size() - 1; i > 0; i--) {
 			for(int j = 0; j < availableBills.get(i - 1).quantityInStock; j++) {
 				if(value >= availableBills.get(i).getDoubleValue()) {
@@ -65,6 +64,7 @@ public class Currency {
 					System.out.printf("%dx - %s" + System.lineSeparator(), acumulated, currencyList.get(i).name);
 					acumulated = 0;
 				}
+
 				acumulated += 1;
 			}
 		}
@@ -82,15 +82,19 @@ public class Currency {
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public int getRealValue() {
 		return value;
 	}
+	
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
 	public double getDoubleValue() {
 		return (double)value/divider;
 	}

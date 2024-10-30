@@ -55,9 +55,12 @@ public class VendingMachineConsole {
                         break;
                 }
             } else if (option == 5) {
+            	
                 System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
                 menu = false;
+                
             } else {
+            	
                 System.out.println("Opção inválida. Tente novamente.");
             }
         }
