@@ -42,6 +42,15 @@ public class Product {
     	return this.stock > 0;   	
     }
     
+    public boolean sell() {
+    	if (this.stock > 0) {
+    		this.stock -= 1;
+    		
+    		return true;
+    	} else { return false; }
+    }
+ 
+
     public String getName() {
     	return name;
     }
@@ -58,9 +67,4 @@ public class Product {
     	return stock;
     }
     
-    public void decreaseStock() {
-    	if (stock > 0) {
-    	    stock -= 1;
-    	}
-    }
 }

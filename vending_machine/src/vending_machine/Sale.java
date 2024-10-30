@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import vending_machine.Product.ProductType;
-//ArrayList sales, generate relatory of sales,
 
 public class Sale {
 	public static void main(String[] args) { 	
@@ -21,7 +20,7 @@ public class Sale {
         sales.add(sale);
         sales.add(sale);
         sales.add(sale);
-        sale.printSaleHistory();
+        sale.generateSalesReport();
         
     }
 	
@@ -31,10 +30,10 @@ public class Sale {
     private String date;
     
     public Sale (Product product) {
-    	sellRegister(product);
+    	registerSale(product);
     }
     
-	public void printSaleHistory(){
+	public void generateSalesReport(){
         System.out.println("Aqui está o histórico de vendas:");
         double totalValue = 0;
         for(Sale s: sales){
@@ -49,7 +48,8 @@ public class Sale {
         System.out.printf("\nO valor total de vendas foi de: %.2fR$", totalValue);
 	}
 	
-	public void sellRegister(Product product) {
+	public void registerSale(Product product) {
+		product.decreaseStock();
 		Format timeFormat = new SimpleDateFormat("HH:mm");
 		Format dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		time = timeFormat.format(new Date());
@@ -62,5 +62,8 @@ public class Sale {
     }
     public String getDate() {
     	return date;
+    }
+    public ArrayList<Sale> getSales(){
+    	return sales;
     }
 }
