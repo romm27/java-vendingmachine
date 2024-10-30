@@ -19,6 +19,7 @@ public class VendingMachine {
         }
 
         double changeAmount = payment - productPrice;
+        
         ArrayList<Currency> change = Currency.getChange(changeAmount);
 
         if (change == null) {

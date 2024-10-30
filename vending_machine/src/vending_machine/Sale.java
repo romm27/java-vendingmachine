@@ -21,7 +21,6 @@ public class Sale {
         sales.add(sale);
         sales.add(sale);
         sale.generateSalesReport();
-        
     }
 	
     private static ArrayList<Sale> sales = new ArrayList<>();
@@ -43,8 +42,10 @@ public class Sale {
             s.getDate(),
             s.getTime()
             );
+            
          totalValue = totalValue + s.product.getPrice();
         }
+        
         System.out.printf("\nO valor total de vendas foi de: %.2fR$", totalValue);
 	}
 	
@@ -60,9 +61,11 @@ public class Sale {
     public String getTime() {
     	return time;
     }
+    
     public String getDate() {
     	return date;
     }
+    
     public ArrayList<Sale> getSales(){
     	return sales;
     }
