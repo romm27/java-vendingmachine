@@ -7,15 +7,6 @@ public class VendingMachineConsole {
         Scanner scanner = new Scanner(System.in);
         VendingMachine vendingMachine = new VendingMachine();
 
-        Product amendoim = new Product("Amendoim", "Marca A", Product.ProductType.food, 250, 10);
-        Product salgadinho = new Product("Salgadinho", "Marca B", Product.ProductType.food, 500, 5);
-        Product guarana = new Product("Guaraná Zero", "Marca C", Product.ProductType.beverage, 350, 8);
-        Product cafe = new Product("Café", "Marca D", Product.ProductType.beverage, 150, 20);
-
-        VendingMachine.availableProducts.add(amendoim);
-        VendingMachine.availableProducts.add(salgadinho);
-        VendingMachine.availableProducts.add(guarana);
-        VendingMachine.availableProducts.add(cafe);
 
         boolean menu = true;
 
@@ -37,19 +28,19 @@ public class VendingMachineConsole {
                 switch (option) {
                     case 1:
                         System.out.println("Você escolheu Amendoim.");
-                        vendingMachine.sell(amendoim, payment);
+                        // vendingMachine.sell(amendoim, payment);
                         break;
                     case 2:
                         System.out.println("Você escolheu Salgadinho.");
-                        vendingMachine.sell(salgadinho, payment);
+                        // vendingMachine.sell(salgadinho, payment);
                         break;
                     case 3:
                         System.out.println("Você escolheu Guaraná Zero.");
-                        vendingMachine.sell(guarana, payment);
+                        // vendingMachine.sell(guarana, payment);
                         break;
                     case 4:
                         System.out.println("Você escolheu Café.");
-                        vendingMachine.sell(cafe, payment);
+                        // vendingMachine.sell(cafe, payment);
                         break;
                     default:
                         break;
