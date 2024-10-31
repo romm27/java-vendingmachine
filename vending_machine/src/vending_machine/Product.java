@@ -14,17 +14,18 @@ public class Product {
     private static ArrayList<Product> products = new ArrayList<>();
 
     static{
-        products.add(new Product(1, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300, 8));
-        products.add(new Product(2, "Salgadinho de crina", "Pato Galinha", ProductType.food, 690, 5));
-        products.add(new Product(3, "Salgadinho musical", "Filhote de Tim Maia", ProductType.food, 490, 6));
-        products.add(new Product(4, "Batatas rústicas", "Navio spine", ProductType.food, 1175, 7));
-        products.add(new Product(5, "Cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350, 9));
-        products.add(new Product(6, "Batata antigravitacional", "Hemisfério invertido", ProductType.food, 5040, 4));
-        products.add(new Product(7, "Fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145, 8));
-        products.add(new Product(8, "Refrigerante fluorescente", "Dr. Nefarious" , ProductType.beverage, 940, 8));
-        products.add(new Product(9, "Cupcake sabor rosa", "Fada dos bolos", ProductType.food, 515, 6));
-        products.add(new Product(10, "Pipoca Vacas voadoras", "Fada dos bolos", ProductType.food, 750, 2));
-        products.add(new Product(11, "Refrigente amargo sabor derrota e limão", "Glowtf", ProductType.food, 750, 2));
+        products.add(new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300, 8));
+        products.add(new Product(1, "Salgadinho de crina", "Pato Galinha", ProductType.food, 690, 5));
+        products.add(new Product(2, "Salgadinho musical", "Filhote de Tim Maia", ProductType.food, 490, 6));
+        products.add(new Product(3, "Batatas rústicas", "Navio spine", ProductType.food, 1175, 7));
+        products.add(new Product(4, "Cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350, 9));
+        products.add(new Product(5, "Batata antigravitacional", "Hemisfério invertido", ProductType.food, 5040, 4));
+        products.add(new Product(6, "Fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145, 8));
+        products.add(new Product(7, "Refrigerante fluorescente", "Dr. Nefarious" , ProductType.beverage, 940, 8));
+        products.add(new Product(8, "Cupcake sabor rosa", "Fada dos bolos", ProductType.food, 515, 6));
+        products.add(new Product(9, "Pipoca Vacas voadoras", "Fada dos bolos", ProductType.food, 750, 2));
+        products.add(new Product(10, "Refrigente amargo sabor derrota e limão", "Glowtf", ProductType.food, 750, 2));
+        products.add(new Product(11, "Salgadinho sabor dor nas costas", "Programador tranquilão", ProductType.food, 1250, 3));
     }
 
     public Product(int id, String name, String brand, ProductType productType, int price, int stock) {
