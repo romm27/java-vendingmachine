@@ -5,24 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import vending_machine.Product.ProductType;
-
 public class Sale {
-	public static void main(String[] args) { 	
-        Product product = new Product("salgado", "do gusta", ProductType.food, 7_00, 18 );
-        Sale sale = new Sale(product);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sales.add(sale);
-        sale.generateSalesReport();
-    }
-	
     private static ArrayList<Sale> sales = new ArrayList<>();
     private Product product;
     private String time;
