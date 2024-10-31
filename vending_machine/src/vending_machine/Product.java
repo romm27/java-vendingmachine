@@ -1,6 +1,5 @@
 package vending_machine;
 
-import vending_machine.Currency.CurrencyType;
 public class Product {
 	private String name;
 	private String brand;
