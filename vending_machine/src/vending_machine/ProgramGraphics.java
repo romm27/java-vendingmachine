@@ -9,6 +9,7 @@ public abstract class ProgramGraphics {
 		w.setBounds(130,100,100, 40);
 		w.setSize(16 *screenSizeMultiplier,9 * screenSizeMultiplier);
 		w.setVisible(true);
+		w.add(new JLabel(new ImageIcon("images/temp.jpeg")));
 		return w;
 	}
 	
