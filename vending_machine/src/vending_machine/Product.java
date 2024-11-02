@@ -5,7 +5,7 @@ import vending_machine.Product.ProductType;
 
 public class Product {
     private int id;
-	private String name;
+    private String name;
 	private String brand;
 	public enum ProductType { food, beverage }
 	private ProductType productType; 
@@ -35,6 +35,7 @@ public class Product {
         this.productType = productType;
         this.price = price;
         this.stock = stock;
+        products.add(this);
     }
 
 	public void setName(String name) {
@@ -78,8 +79,12 @@ public class Product {
     }
     
     public void decreaseStock() {
-    	if (stock > 0) {
+    	if (isAvailable()) {
     	    stock -= 1;
     	}
+    }
+
+    public int getId() {
+        return id;
     }
 }
