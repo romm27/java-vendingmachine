@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import vending_machine.Product.ProductType;
-
 public class Sale {
     private static ArrayList<Sale> sales = new ArrayList<>();
     private Product product;
@@ -14,7 +12,12 @@ public class Sale {
     private String date;
     
     public Sale (Product product) {
-    	registerSale(product);
+    	product.decreaseStock();
+        Format timeFormat = new SimpleDateFormat("HH:mm");
+        Format dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        time = timeFormat.format(new Date());
+        date = dateFormat.format(new Date());
+        this.product = product;
     }
     
 	public void generateSalesReport(){
@@ -32,15 +35,6 @@ public class Sale {
         }
         
         System.out.printf("\nO valor total de vendas foi de: %.2fR$", totalValue);
-	}
-	
-	public void registerSale(Product product) {
-		product.decreaseStock();
-		Format timeFormat = new SimpleDateFormat("HH:mm");
-		Format dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		time = timeFormat.format(new Date());
-		date = dateFormat.format(new Date());
-		this.product = product;
 	}
     
     public String getTime() {
