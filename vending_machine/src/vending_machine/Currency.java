@@ -3,26 +3,29 @@ package vending_machine;
 import java.util.ArrayList;
 
 public class Currency {
+	//Config
+	private static int currencyDecimalDivider = 100;
+	
 	public enum CurrencyType{ bill, coin}
 	private int quantityInStock;
 	private String name;
 	private int value;
-	private int divider;
 	private CurrencyType currencyType;
 	public static  ArrayList<Currency> availableBills = new ArrayList<Currency>();
 	
 	// Defines the available bills
 	static {
-		availableBills.add(new Currency(10, "Cinco Centavos", 5, 100, CurrencyType.coin));
-		availableBills.add(new Currency(10, "Dez Centavos", 10, 100, CurrencyType.coin));
-		availableBills.add(new Currency(10, "Vinte e Cinco Centavos", 25, 100, CurrencyType.coin));
-		availableBills.add(new Currency(10, "Cinquenta Centavos", 5, 10, CurrencyType.coin));
-		availableBills.add(new Currency(10, "Um Real", 1, 1, CurrencyType.coin));
-		availableBills.add(new Currency(10, "Dois Reais", 2, 1, CurrencyType.bill));
-		availableBills.add(new Currency(10, "Cinco Reais", 5, 1, CurrencyType.bill));
-		availableBills.add(new Currency(10, "Dez Reais", 10, 1, CurrencyType.bill));
-		availableBills.add(new Currency(10, "Cinquenta Reais", 50, 1, CurrencyType.bill));
-		availableBills.add(new Currency(10, "Cem Reais", 100, 1, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Um Centavo", 1, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Cinco Centavos", 5, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Dez Centavos", 10, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Vinte e Cinco Centavos", 25, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Cinquenta Centavos", 50, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Um Real", 100, CurrencyType.coin));
+		availableBills.add(new Currency(10, "Dois Reais", 200, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cinco Reais", 500, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Dez Reais", 1000, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cinquenta Reais", 5000, CurrencyType.bill));
+		availableBills.add(new Currency(10, "Cem Reais", 10000, CurrencyType.bill));
 	}
 	
 	public static void main(String[] args) {
@@ -32,17 +35,20 @@ public class Currency {
 	public static ArrayList<Currency> getChange(double value){
 		ArrayList<Currency> temp = new ArrayList<Currency>();
 		
+		int realValue = (int)Math.round(value * currencyDecimalDivider);
+		
+		System.out.println(realValue);
+		
 		for(int i = availableBills.size() - 1; i > 0; i--) {
 			for(int j = 0; j < availableBills.get(i - 1).quantityInStock; j++) {
-				if(value >= availableBills.get(i).getDoubleValue()) {
-					value -= availableBills.get(i).getDoubleValue();
+				if(realValue >= availableBills.get(i).getRealValue()) {
+					realValue -= availableBills.get(i).getRealValue();
 					temp.add(availableBills.get(i));
 				}
 			}
 		}
 		
-		if(Math.abs(value) <= 0.01) { //<---- Basically testing if value == 0.
-			//Remove from stock
+		if(realValue == 0) {
 			for(int i = 0; i < temp.size();i++) {
 				temp.get(i).quantityInStock -= 1;
 			}
@@ -71,11 +77,10 @@ public class Currency {
 		return valid;
 	}
 	
-	public Currency(int quantityInStock, String name, int value, int divider, CurrencyType currencyType) {
+	public Currency(int quantityInStock, String name, int value, CurrencyType currencyType) {
 		this.quantityInStock = quantityInStock;
 		this.name = name;
 		this.value = value;
-		this.divider = divider;
 		this.currencyType = currencyType;
 	}
 	
@@ -96,7 +101,7 @@ public class Currency {
 	}
 	
 	public double getDoubleValue() {
-		return (double)value/divider;
+		return (double)value / currencyDecimalDivider;
 	}
 
 	public CurrencyType getCurrencyType() {
