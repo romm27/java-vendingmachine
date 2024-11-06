@@ -6,19 +6,19 @@ import vending_machine.Product.ProductType;
 public class Product {
     private int id;
     private String name;
-	private String brand;
-	public enum ProductType { food, beverage }
-	private ProductType productType; 
-	private int price; 
-	private int stock; 
+    private String brand;
+    public enum ProductType { food, beverage }
+    private ProductType productType; 
+    private int price; 
+    private int stock; 
     private static ArrayList<Product> products = new ArrayList<>();
 
-    static{
+    static {
         products.add(new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300, 8));
         products.add(new Product(2, "Suco musical", "Filhote de Tim Maia", ProductType.beverage, 490, 6));
         products.add(new Product(4, "Cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350, 9));
         products.add(new Product(6, "Fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145, 8));
-        products.add(new Product(7, "Refrigerante fluorescente", "Dr. Nefarious" , ProductType.beverage, 940, 8));
+        products.add(new Product(7, "Refrigerante fluorescente", "Dr. Nefarious", ProductType.beverage, 940, 8));
         products.add(new Product(8, "Suco de rosa", "Fada dos bolos", ProductType.beverage, 515, 6));
         products.add(new Product(1, "Salgadinho de crina", "Pato Galinha", ProductType.food, 690, 5));
         products.add(new Product(3, "Batatas rústicas", "Navio spine", ProductType.food, 1175, 7));
@@ -35,7 +35,6 @@ public class Product {
         this.productType = productType;
         this.price = price;
         this.stock = stock;
-        products.add(this);
     }
 
 	public void setName(String name) {
@@ -86,5 +85,9 @@ public class Product {
 
     public int getId() {
         return id;
+    }
+    
+    public static ArrayList<Product> getProducts() {
+        return products;
     }
 }
