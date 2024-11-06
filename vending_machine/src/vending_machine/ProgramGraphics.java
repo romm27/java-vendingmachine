@@ -5,12 +5,12 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class ProgramGraphics {
-	public static int WINDOW_SIZE_MULTIPLIER = 8;
-	public static int WIDTH_RATIO = 49;
-	public static int HEIGHT_RATIO = 105;
-	
-	public static int WINDOW_WIDTH = WIDTH_RATIO * WINDOW_SIZE_MULTIPLIER;
-	public static int WINDOW_HEIGHT = HEIGHT_RATIO * WINDOW_SIZE_MULTIPLIER;
+    public static int WINDOW_SIZE_MULTIPLIER = 8;
+    public static int WIDTH_RATIO = 49;
+    public static int HEIGHT_RATIO = 105;
+    
+    public static int WINDOW_WIDTH = WIDTH_RATIO * WINDOW_SIZE_MULTIPLIER;
+    public static int WINDOW_HEIGHT = HEIGHT_RATIO * WINDOW_SIZE_MULTIPLIER;
 
     public static JFrame createFrame() {
         JFrame frame = new JFrame("Resizable Background Frame");
@@ -22,7 +22,8 @@ public class ProgramGraphics {
         
         // Test button
         JButton button = new JButton("Sample Button");
-        button.setBounds(50, 50, 50, 50);  
+        int[] pos = normalizedToPixelPosition(0.5, 0.5); 
+        button.setBounds(pos[0], pos[1], 50, 50);  
         backgroundPanel.add(button);
 
         frame.add(backgroundPanel);
@@ -39,7 +40,6 @@ public class ProgramGraphics {
             try {
                 backgroundImage = new ImageIcon(imagePath).getImage();
                 
-                // Redraw the background on resize
                 addComponentListener(new ComponentAdapter() {
                     @Override
                     public void componentResized(ComponentEvent e) {
@@ -58,5 +58,11 @@ public class ProgramGraphics {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         }
+    }
+
+    public static int[] normalizedToPixelPosition(double normalizedX, double normalizedY) {
+        int pixelX = (int) Math.round(normalizedX * WINDOW_WIDTH);
+        int pixelY = (int) Math.round(normalizedY * WINDOW_HEIGHT);
+        return new int[] { pixelX, pixelY };
     }
 }
