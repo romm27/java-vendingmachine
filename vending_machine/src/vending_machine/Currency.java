@@ -37,7 +37,7 @@ public class Currency {
 		
 		int realValue = (int)Math.round(value * currencyDecimalDivider);
 		
-		System.out.println(realValue);
+//		System.out.println(realValue);
 		
 		for(int i = availableBills.size() - 1; i > 0; i--) {
 			for(int j = 0; j < availableBills.get(i - 1).quantityInStock; j++) {

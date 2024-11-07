@@ -14,7 +14,7 @@ public class Product {
     private static ArrayList<Product> products = new ArrayList<>();
 
     static{
-        products.add(new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300, 8));
+        products.add(new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300, 1));
         products.add(new Product(2, "Suco musical", "Filhote de Tim Maia", ProductType.beverage, 490, 6));
         products.add(new Product(4, "Cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350, 9));
         products.add(new Product(6, "Fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145, 8));
@@ -35,7 +35,6 @@ public class Product {
         this.productType = productType;
         this.price = price;
         this.stock = stock;
-        products.add(this);
     }
 
 	public void setName(String name) {
@@ -86,5 +85,9 @@ public class Product {
 
     public int getId() {
         return id;
+    }
+    
+    public static ArrayList<Product> getProducts() {
+        return products;
     }
 }
