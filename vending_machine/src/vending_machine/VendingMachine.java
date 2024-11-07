@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class VendingMachine {
 	public static  ArrayList<Product> availableProducts = new ArrayList<Product>();
 	
-	public boolean sell(Product product, double payment) {
+	public boolean sell(Product product, double payment) throws NoChangeException {
         if (!product.isAvailable()) {
             System.out.println("O produto " + product.getName() + " está indisponível.");
             return false;
@@ -23,8 +23,7 @@ public class VendingMachine {
         ArrayList<Currency> change = Currency.getChange(changeAmount);
 
         if (change == null) {
-            System.out.println("Máquina com estoque insuficiente de dinheiro para finalizar a venda.");
-            return false;
+        	throw new NoChangeException("Máquina com estoque insuficiente de dinheiro para finalizar a venda.");
         }
 
         product.decreaseStock();

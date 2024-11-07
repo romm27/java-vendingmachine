@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class VendingMachineConsole {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoChangeException {
         Scanner scanner = new Scanner(System.in);
         VendingMachine vendingMachine = new VendingMachine();
 
