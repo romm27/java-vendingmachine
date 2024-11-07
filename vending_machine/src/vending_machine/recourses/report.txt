@@ -10,3 +10,4 @@ O produto 'Batatas rústicas' custou 11.75R$ | Data da venda: 07/11/2024 às 02:
 O produto 'Salgadinho sabor dor nas costas' custou 12.50R$ | Data da venda: 07/11/2024 às 02:05h.
 O produto 'Cerveja sabor tranquilidade' custou 13.50R$ | Data da venda: 07/11/2024 às 02:15h.
 O produto 'Pipoca Vacas voadoras' custou 7.50R$ | Data da venda: 07/11/2024 às 02:15h.
+O produto 'Refrigerante de matte' custou 13,00R$ | Data da venda: 07/11/2024 às 07:49h.
