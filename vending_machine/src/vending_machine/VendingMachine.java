@@ -28,9 +28,7 @@ public class VendingMachine {
         }
 
         product.decreaseStock();
-        Currency.printCurrency(change);
 
-        System.out.println("Retire o produto " + product.getName() + " da máquina.");
         return true;
     }
 

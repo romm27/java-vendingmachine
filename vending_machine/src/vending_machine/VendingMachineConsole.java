@@ -1,4 +1,5 @@
 package vending_machine;
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class VendingMachineConsole {
                 i++;
             }
             System.out.printf("[ %d ]\tSair\n", i);
-            System.out.print("\n Digite a opção desejada: ");
+            System.out.print("\nDigite a opção desejada: ");
             
             try {
                 int option = scanner.nextInt();
@@ -28,11 +29,49 @@ public class VendingMachineConsole {
                 if (option >= 1 && option < i) {
                     Product selectedProduct = Product.getProducts().get(option - 1);
 
-                    System.out.printf("Você escolheu %s. Realize o pagamento: R$ %.2f\n", selectedProduct.getName(), selectedProduct.getPrice());
-                    double payment = scanner.nextDouble();
+                    if (!selectedProduct.isAvailable()) {
+                        System.out.println("Produto indisponível no momento. Tente outro produto.");
+                        continue;
+                    }
 
-                    vendingMachine.sell(selectedProduct, payment);
+                    System.out.println("Escolha o método de pagamento:\n[ 1 ] Dinheiro\n[ 2 ] Cartão\n[ 3 ] Cancelar");
+                    int paymentMethodOption = scanner.nextInt();
+                    PaymentMethods paymentMethod;
+
+                    switch (paymentMethodOption) {
+                        case 1 -> paymentMethod = new Money();
+                        case 2 -> paymentMethod = new Card();
+                        case 3 -> {
+                            System.out.println("Compra cancelada.");
+                            continue;
+                        }
+                        default -> {
+                            System.out.println("Opção de pagamento inválida. Tente novamente.");
+                            continue;
+                        }
+                    }
+
+                    int value = (int) (selectedProduct.getPrice() * 100); 
+                    if (paymentMethodOption == 1) {
+                        System.out.print("Digite o valor que irá inserir na máquina em reais: "); // convert/ verify int vs double
+                        int payment = scanner.nextInt(); 
+                        
+                        if (paymentMethod.processPayment(payment)) {
+                            vendingMachine.sell(selectedProduct, payment); 
+                            System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
+                        } else {
+                            System.out.println("Pagamento não foi processado. Tente novamente.");
+                        }
+                    } else if (paymentMethodOption == 2) {
+
+                        System.out.println("Pagamento com cartão realizado com sucesso!");
+                        vendingMachine.sell(selectedProduct, value); 
+                        System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
+                    } else {
+                        System.out.println("Pagamento não foi processado. Tente novamente.");
+                    }
                 } else if (option == i) {
+
                     System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
                     menu = false;
                 } else {
@@ -40,12 +79,12 @@ public class VendingMachineConsole {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Apenas números são permitidos. Tente novamente.");
-                scanner.next();
+                scanner.next(); 
             } catch (NoSuchElementException e) {
                 System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
-                break;
+                break; 
             }
         }
-        scanner.close();
+        scanner.close(); 
     }
 }
