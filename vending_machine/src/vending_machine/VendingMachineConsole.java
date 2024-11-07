@@ -1,5 +1,6 @@
 package vending_machine;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -27,6 +28,7 @@ public class VendingMachineConsole {
                 int option = scanner.nextInt();
 
                 if (option >= 1 && option < i) {
+                
                     Product selectedProduct = Product.getProducts().get(option - 1);
 
                     if (!selectedProduct.isAvailable()) {
@@ -58,7 +60,17 @@ public class VendingMachineConsole {
                         
                         if (paymentMethod.processPayment(payment)) {
                             vendingMachine.sell(selectedProduct, payment); 
+                            
+                            //write on json 
                             System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
+                            Sale sale = new Sale(selectedProduct);
+                            try {
+                            	sale.writeOnFile();
+                            	
+                            }catch(IOException e) {
+                            	System.out.println("O arquivo não foi encontrado para fazer o registro.");
+                            }
+                            
                         } else {
                             System.out.println("Pagamento não foi processado. Tente novamente.");
                         }
@@ -66,7 +78,16 @@ public class VendingMachineConsole {
 
                         System.out.println("Pagamento com cartão realizado com sucesso!");
                         vendingMachine.sell(selectedProduct, value); 
+                        
+                        //write on json
                         System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
+                        Sale sale = new Sale(selectedProduct);
+                        try {
+                        	sale.writeOnFile();
+                        	
+                        }catch(IOException e) {
+                        	System.out.println("O arquivo não foi encontrado para fazer o registro.");
+                        }
                     } else {
                         System.out.println("Pagamento não foi processado. Tente novamente.");
                     }

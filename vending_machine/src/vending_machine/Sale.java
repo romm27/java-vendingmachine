@@ -1,9 +1,16 @@
 package vending_machine;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+
+import vending_machine.Product.ProductType;
 
 public class Sale {
     private static ArrayList<Sale> sales = new ArrayList<>();
@@ -11,30 +18,89 @@ public class Sale {
     private String time;
     private String date;
     
+//    public static void  main(String[] args) {
+//    	System.out.println("To dentro!");
+//    	Sale gigante = new Sale( new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 2100, 1));
+//    	Sale gigante1 = new Sale( new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 2100, 1));
+//    	Sale gigante2 = new Sale( new Product(0, "Refrigerante de matte", "Capivara Lysa", ProductType.beverage, 2100, 1));
+//
+//    	
+//
+//        try {
+//        	gigante.writeOnFile("Foi pohammmm");
+//        }catch( IOException e) {
+//        	System.out.println("Geramento deu erro");
+//        }finally {
+//        	System.out.println("fui paiASD");
+//        }
+//    }
+    
     public Sale (Product product) {
-    	product.decreaseStock();
         Format timeFormat = new SimpleDateFormat("HH:mm");
         Format dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         time = timeFormat.format(new Date());
         date = dateFormat.format(new Date());
         this.product = product;
+        sales.add(this);
     }
     
-	public void generateSalesReport(){
-        System.out.println("Aqui está o histórico de vendas:");
+	public ArrayList<String> generateSalesReport(){
+		ArrayList<String> report = new ArrayList<String>();
+        report.add("Aqui está o histórico de vendas:\n");
         double totalValue = 0;
         for(Sale s: sales){
-            System.out.printf("O produto '%s' custou %.2fR$ | Data da venda: %s às %sh.\n",
+            report.add(String.format("O produto '%s' custou %.2fR$ | Data da venda: %s às %sh.\n",
             s.product.getName(),
             s.product.getPrice(),
             s.getDate(),
             s.getTime()
-            );
+            ));
             
          totalValue = totalValue + s.product.getPrice();
         }
         
-        System.out.printf("\nO valor total de vendas foi de: %.2fR$", totalValue);
+        report.add(String.format("\nO valor total de vendas foi de: %.2fR$", totalValue));
+        return report;
+	}
+	
+	public void writeFullReportOnFile() throws IOException {
+
+		File reportPath = new File("src" + FileSystems.getDefault().getSeparator() 
+				+ "vending_machine" + FileSystems.getDefault().getSeparator()
+				+ "recourses" + FileSystems.getDefault().getSeparator()+ "report.txt");
+		
+		if (!reportPath.exists()) {
+			reportPath.createNewFile();
+		}
+		FileWriter writeReport = new FileWriter(reportPath, false);
+		ArrayList<String> reportMessage = new ArrayList<String>();
+		reportMessage = generateSalesReport();
+		for(String s: reportMessage) {
+			writeReport.append(s);
+		}
+		writeReport.flush();
+		writeReport.close();
+		
+	}
+	
+	public void writeOnFile () throws IOException {
+		File reportPath = new File("src" + FileSystems.getDefault().getSeparator() 
+				+ "vending_machine" + FileSystems.getDefault().getSeparator()
+				+ "recourses" + FileSystems.getDefault().getSeparator()+ "report.txt");
+		
+		if (!reportPath.exists()) {
+			reportPath.createNewFile();
+		}
+		FileWriter writeReport = new FileWriter(reportPath, true);
+		String message = String.format("O produto '%s' custou %.2fR$ | Data da venda: %s às %sh.\n",
+	            this.product.getName(),
+	            this.product.getPrice(),
+	            this.getDate(),
+	            this.getTime()
+	            );
+		writeReport.append(message);
+		writeReport.flush();
+		writeReport.close();
 	}
     
     public String getTime() {

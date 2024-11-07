@@ -1,0 +1,10 @@
+O produto 'Refrigerante de matte' custou 13.00R$ | Data da venda: 07/11/2024 às 02:03h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Refrigerante de matte' custou 13.00R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Refrigerante fluorescente' custou 9.40R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Batatas rústicas' custou 11.75R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Salgadinho sabor dor nas costas' custou 12.50R$ | Data da venda: 07/11/2024 às 02:05h.
