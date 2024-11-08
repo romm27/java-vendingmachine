@@ -29,6 +29,19 @@ public class VendingMachine {
         return true;
     }
 	
-	
+	public void generateMenu() {
+        System.out.println("\n|------------------------------------ MENU ------------------------------------|\n");
 
+        int i = 1;
+        for (Product product : Product.getProducts()) {
+            System.out.printf("[ %d ]\t%s (%s) - R$ %.2f\n", i, product.getName(), product.getBrand(), product.getPrice());
+            i++;
+        }
+        System.out.printf("[ %d ]\tSair\n", i);
+        System.out.print("\nDigite a opção desejada: ");
+	}
+	
+	public void goodByeMsg() {
+		System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
+	}
 }
