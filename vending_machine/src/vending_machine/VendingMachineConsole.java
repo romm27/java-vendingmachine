@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class VendingMachineConsole {
 
-    public static void main(String[] args) throws NoChangeException {
+    public static void main(String[] args) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
         Scanner scanner = new Scanner(System.in);
         VendingMachine vendingMachine = new VendingMachine();
 
@@ -61,7 +61,6 @@ public class VendingMachineConsole {
                         if (paymentMethod.processPayment(payment)) {
                             vendingMachine.sell(selectedProduct, payment); 
                             
-                            //write on json 
                             System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
                             Sale sale = new Sale(selectedProduct);
                             try {
@@ -79,7 +78,7 @@ public class VendingMachineConsole {
                         System.out.println("Pagamento com cartão realizado com sucesso!");
                         vendingMachine.sell(selectedProduct, value); 
                         
-                        //write on json
+
                         System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
                         Sale sale = new Sale(selectedProduct);
                         try {

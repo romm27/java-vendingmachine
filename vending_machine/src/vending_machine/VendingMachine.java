@@ -5,17 +5,15 @@ import java.util.ArrayList;
 public class VendingMachine {
 	public static  ArrayList<Product> availableProducts = new ArrayList<Product>();
 	
-	public boolean sell(Product product, double payment) throws NoChangeException {
-        if (!product.isAvailable()) {
-            System.out.println("O produto " + product.getName() + " está indisponível.");
-            return false;
+	public boolean sell(Product product, double payment) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
+		if (!product.isAvailable()) {
+            throw new ProductUnavailableException("O produto " + product.getName() + " está indisponível.");
         }
 
         double productPrice = product.getPrice();
         
-        if (payment * 100 < productPrice) {
-            System.out.println("Pagamento insuficiente para o produto " + product.getName() + ".");
-            return false;
+        if (payment < productPrice) {
+            throw new InsufficientPaymentException("Pagamento insuficiente para o produto " + product.getName() + ".");
         }
 
         double changeAmount = payment - productPrice;
@@ -30,5 +28,7 @@ public class VendingMachine {
 
         return true;
     }
+	
+	
 
 }
