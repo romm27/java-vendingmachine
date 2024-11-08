@@ -9,8 +9,12 @@ public class Money extends PaymentMethods{
 			return true;
 			
 		} else {
-			
 			return false;
 		}
+	}
+	
+	@Override
+	public void successPaymentMsg() {
+		System.out.println("Pagamento em dinheiro realizado com sucesso!");
 	}
 }

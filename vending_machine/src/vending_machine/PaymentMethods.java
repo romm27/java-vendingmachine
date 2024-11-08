@@ -6,8 +6,10 @@ public abstract class PaymentMethods {
 	
 	public abstract boolean processPayment(int valor);
 	
+	public abstract void successPaymentMsg();
+	
 	public static void errorOnPaymentMsg() {
-		System.out.println("Pagamento não foi processado. Tente novamente.");
+		System.out.println("O pagamento não foi processado. Tente novamente.");
 	}
 	
 	public static void generatePaymentMethodsMenu() {

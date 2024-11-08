@@ -1,6 +1,5 @@
 package vending_machine;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -64,12 +63,7 @@ public class VendingMachineConsole {
                             
                             Sale sale = new Sale(selectedProduct);
                             
-                            try {
-                            	sale.writeOnFile();
-                            	
-                            }catch(IOException e) {
-                            	System.out.println("O arquivo não foi encontrado para fazer o registro.");
-                            }
+                            sale.canWriteToFile (sale);
                             
                         } else {
                         	PaymentMethods.errorOnPaymentMsg();
@@ -77,18 +71,12 @@ public class VendingMachineConsole {
                         
                     } else if (paymentMethodOption == 2) {
 
-                        System.out.println("Pagamento com cartão realizado com sucesso!");
                         vendingMachine.sell(selectedProduct, value); 
                       
                         System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
                         Sale sale = new Sale(selectedProduct);
                         
-                        try {
-                        	sale.writeOnFile();
-                        	
-                        }catch(IOException e) {
-                        	System.out.println("O arquivo não foi encontrado para fazer o registro da venda.");
-                        }
+                        sale.canWriteToFile (sale);
                         
                     } else {
                     	PaymentMethods.errorOnPaymentMsg();

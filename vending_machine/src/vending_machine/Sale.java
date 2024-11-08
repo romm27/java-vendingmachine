@@ -68,7 +68,7 @@ public class Sale {
 		
 	}
 	
-	public void writeOnFile () throws IOException {
+	public void writeReportOnFile () throws IOException {
 		File reportPath = new File("src" + FileSystems.getDefault().getSeparator() 
 				+ "vending_machine" + FileSystems.getDefault().getSeparator()
 				+ "recourses" + FileSystems.getDefault().getSeparator()+ "report.txt");
@@ -89,6 +89,8 @@ public class Sale {
 		writeReport.append(message);
 		writeReport.flush();
 		writeReport.close();
+		
+		
 	}
     
     public String getTime() {
@@ -102,4 +104,15 @@ public class Sale {
     public ArrayList<Sale> getSales(){
     	return sales;
     }
+    
+    public void canWriteToFile(Sale sale) {
+        try {
+        	sale.writeReportOnFile();
+        	
+        }catch(IOException e) {
+        	System.out.println("O arquivo não foi encontrado para fazer o registro da venda.");
+        }
+    	
+    }
+    
 }

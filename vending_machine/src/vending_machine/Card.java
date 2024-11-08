@@ -6,4 +6,9 @@ public class Card extends PaymentMethods{
 		System.out.println("Pagamento efetuado com sucesso!\n");
 		return true;
 	}
+	
+	@Override
+	public void successPaymentMsg() {
+		System.out.println("Pagamento em dinheiro realizado com sucesso!");
+	}
 }
