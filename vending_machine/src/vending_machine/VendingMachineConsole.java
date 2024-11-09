@@ -7,16 +7,19 @@ import java.util.Scanner;
 public class VendingMachineConsole {
 
 	public static void main(String[] args)
-			throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
-		System.out.println("Boas vindas à máquina de vendas!");
-
+			throws NoChangeException, 
+				   ProductUnavailableException, 
+				   InsufficientPaymentException {
+		
 		Scanner scanner = new Scanner(System.in);
 		VendingMachine vendingMachine = new VendingMachine();
 		int productsQuantity = Product.getProducts().size() + 1;
+		
+		vendingMachine.welcomeMsg();
+		
 		boolean menu = true;
 
 		while (menu) {
-
 			vendingMachine.generateMenu();
 
 			try {
@@ -30,10 +33,12 @@ public class VendingMachineConsole {
 						Product.productUnavailableMsg();
 						continue;
 					}
-					////// implement PaymentMethod generatePaymentMethodsMenu()
-					System.out.println("Escolha o método de pagamento:\n[ 1 ] Dinheiro\n[ 2 ] Cartão\n[ 3 ] Cancelar");
+				
+					PaymentMethods paymentMethod = null;
+					
+					PaymentMethods.generatePaymentMethodsMenu();
+					
 					int paymentMethodOption = scanner.nextInt();
-					PaymentMethods paymentMethod;
 
 					switch (paymentMethodOption) {
 					case 1 -> paymentMethod = new Money();
@@ -44,41 +49,29 @@ public class VendingMachineConsole {
 					}
 
 					default -> {
-						System.out.println("Opção de pagamento inválida. Tente novamente.");
+						paymentMethod.invalidPaymentOption();
 						continue;
+						}
 					}
-					}
-					///////
-
+					
 					int value = (int) (selectedProduct.getPrice() * 100);
 
 					if (paymentMethodOption == 1) {
-						System.out.print("Digite o valor que irá inserir na máquina em reais: "); // convert/ verify int
-																									// vs double
+						
+						vendingMachine.insertMoneyMsg();
+						
 						int payment = scanner.nextInt();
 
 						if (paymentMethod.processPayment(payment)) {
 
 							vendingMachine.sell(selectedProduct, payment);
 
-							System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
-
-							Sale sale = new Sale(selectedProduct);
-
-							sale.canWriteToFile(sale);
-
 						} else {
 							PaymentMethods.errorOnPaymentMsg();
 						}
 
 					} else if (paymentMethodOption == 2) {
-
 						vendingMachine.sell(selectedProduct, value);
-
-						System.out.printf("Retire o produto %s da máquina.\n", selectedProduct.getName());
-						Sale sale = new Sale(selectedProduct);
-
-						sale.canWriteToFile(sale);
 
 					} else {
 						PaymentMethods.errorOnPaymentMsg();
@@ -90,18 +83,20 @@ public class VendingMachineConsole {
 					menu = false;
 
 				} else {
-					System.out.println("Opção inválida. Tente novamente.");
+					vendingMachine.invalidOptionMsg();
 				}
 
 			} catch (InputMismatchException e) {
-				System.out.println("Apenas números são permitidos. Tente novamente.");
+				vendingMachine.invalidOptionMsg();
 				scanner.next();
 
 			} catch (NoSuchElementException e) {
 				vendingMachine.goodByeMsg();
 				break;
 			}
+			
 		}
+		
 		scanner.close();
 	}
 }

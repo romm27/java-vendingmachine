@@ -5,7 +5,7 @@ public class Money extends PaymentMethods{
 	public boolean processPayment(int value) {
 		if (Currency.getChange(value) != null) {
 			Currency.getChange(value);
-			System.out.println("Pagamento do valor realizado com sucesso!\n");
+			System.out.println("Pagamento recebido.\n");
 			return true;
 			
 		} else {
