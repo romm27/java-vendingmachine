@@ -15,3 +15,4 @@ O produto 'Cerveja sabor tranquilidade' custou 13,50R$ | Data da venda: 07/11/20
 O produto 'Suco musical' custou 4,90R$ | Data da venda: 07/11/2024 às 21:35h.
 O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 07/11/2024 às 22:00h.
 O produto 'pipoca Vacas voadoras' custou 7,50R$ | Data da venda: 07/11/2024 às 22:35h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 08/11/2024 às 21:11h.
