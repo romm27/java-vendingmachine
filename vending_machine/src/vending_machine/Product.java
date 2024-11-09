@@ -93,7 +93,7 @@ public class Product {
     }
     
     public static void productUnavailableMsg() {
-    	System.out.println("Produto indisponível no momento. Tente outro produto.");
+    	System.out.println("Produto indisponível no momento. Por favor escolha outro produto.");
     }
 
 }

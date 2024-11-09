@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class VendingMachine {
 	public static  ArrayList<Product> availableProducts = new ArrayList<Product>();
+	private CashRegister cashRegister = new CashRegister();
 	
+	// TODO: Remover metodos de menu / print
 	public void generateMenu() {
         System.out.println("\n|------------------------------------ MENU ------------------------------------|\n");
 
@@ -37,38 +39,30 @@ public class VendingMachine {
 		System.out.print("Digite o valor que irá inserir na máquina em reais: "); 
 	}
 	
-	public boolean canSell(Product product, double payment) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
+	// TODO: Transformar todos valores monetários em int
+	// TODO: Exceptions não precisam de mensagem necessariamente
+	public void validateSale(Product product, double payment) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
 		if (!product.isAvailable()) {
             throw new ProductUnavailableException("O produto " + product.getName() + " está indisponível.");
         }
 
         double productPrice = product.getPrice();
-        
         if (payment < productPrice) {
             throw new InsufficientPaymentException("Pagamento insuficiente para o produto " + product.getName() + ".");
         }
 
         double changeAmount = payment - productPrice;
-        
-        ArrayList<Currency> change = Currency.getChange(changeAmount);
-
-        if (change == null) {
-        	throw new NoChangeException("Máquina com estoque insuficiente de dinheiro para finalizar a venda.");
-        }
-
-        product.decreaseStock();
-
-        return true;
+        cashRegister.calculateCurrency(changeAmount);  
     }
 	
 	public void sell(Product product, double payment) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
-		if (this.canSell(product, payment) == true) {
-			
-			Sale sale = new Sale(product);
+		this.validateSale(product, payment);
 
-			sale.canWriteToFile(sale);
-			
-			this.removeProductFromMachineMsg(product);
-		}
+		Sale sale = new Sale(product);
+		sale.canWriteToFile(sale);
+		
+		product.decreaseStock();
+		
+		this.removeProductFromMachineMsg(product);
 	}
 }

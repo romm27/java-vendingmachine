@@ -90,7 +90,6 @@ public class Sale {
 		writeReport.flush();
 		writeReport.close();
 		
-		
 	}
     
     public String getTime() {
@@ -108,11 +107,9 @@ public class Sale {
     public void canWriteToFile(Sale sale) {
         try {
         	sale.writeReportOnFile();
-        	
-        }catch(IOException e) {
+        } catch(IOException e) {
         	System.out.println("O arquivo não foi encontrado para fazer o registro da venda.");
         }
-    	
     }
     
 }

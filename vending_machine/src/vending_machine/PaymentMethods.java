@@ -16,7 +16,7 @@ public abstract class PaymentMethods {
 		System.out.println("O pagamento não foi processado. Tente novamente.");
 	}
 
-	public void invalidPaymentOption() {
+	public static void invalidPaymentOptionMsg() {
 		System.out.println("Oopção de pagamento desconhecida. Tente novamente.");
 	}
 }

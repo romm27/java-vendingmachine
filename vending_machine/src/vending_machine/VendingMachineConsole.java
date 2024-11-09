@@ -29,12 +29,12 @@ public class VendingMachineConsole {
 
 					Product selectedProduct = Product.getProducts().get(option - 1);
 
-					if (!selectedProduct.isAvailable()) {
+					if (!selectedProduct.isAvailable()) {// change to vedingmachineslot
 						Product.productUnavailableMsg();
 						continue;
 					}
 				
-					PaymentMethods paymentMethod = null;
+					PaymentMethods paymentMethod;
 					
 					PaymentMethods.generatePaymentMethodsMenu();
 					
@@ -49,7 +49,7 @@ public class VendingMachineConsole {
 					}
 
 					default -> {
-						paymentMethod.invalidPaymentOption();
+						PaymentMethods.invalidPaymentOptionMsg();
 						continue;
 						}
 					}
@@ -78,7 +78,6 @@ public class VendingMachineConsole {
 					}
 
 				} else if (option == productsQuantity) {
-
 					vendingMachine.goodByeMsg();
 					menu = false;
 
@@ -93,8 +92,13 @@ public class VendingMachineConsole {
 			} catch (NoSuchElementException e) {
 				vendingMachine.goodByeMsg();
 				break;
-			}
 			
+			} catch (InsufficientPaymentException e) {
+				vendingMachine.goodByeMsg();
+				break;
+				
+			}
+				
 		}
 		
 		scanner.close();
