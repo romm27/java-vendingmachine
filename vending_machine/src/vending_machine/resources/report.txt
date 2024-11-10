@@ -26,3 +26,7 @@ O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 10:18h.
 O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:24h.
 O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:24h.
 O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:33h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 22:39h.
+O produto 'refrigerante fluorescente' custou R$ 9,40 | Data da venda: 09/11/2024 às 22:42h.
+O produto 'refrigerante de matte' custou R$ 13,00 | Data da venda: 09/11/2024 às 22:45h.
+O produto 'suco musical' custou R$ 4,90 | Data da venda: 09/11/2024 às 23:19h.

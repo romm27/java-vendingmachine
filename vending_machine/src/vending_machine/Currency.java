@@ -45,11 +45,5 @@ public class Currency {
 	public void decrementQuantity(int amount) {
 		this.quantity = quantity - amount;
 	}
-//	
-//	public String getFormattedValue() {
-//		int wholeAmount = this.value / 100;
-//		int decimalAmount = this.value - wholeAmount;
-//		
-//		return String.format("%d.%d", wholeAmount, decimalAmount);
-//	}
+
 }

@@ -2,6 +2,7 @@ package vending_machine;
 
 import java.util.ArrayList;
 import vending_machine.Product.ProductType;
+import java.text.DecimalFormat;
 
 public class Product {
     private int id;
@@ -70,8 +71,8 @@ public class Product {
     	return brand;
     }
 
-    public float getPrice() {
-    	return (float) price / 100;
+    public int getPrice() {
+    	return price;
     }
 
     public int getStock() {
@@ -90,10 +91,13 @@ public class Product {
     
     public static ArrayList<Product> getProducts() {
         return products;
-    }
+    }   
     
-    public static void productUnavailableMsg() {
-    	System.out.println("Produto indisponível no momento. Por favor escolha outro produto.");
+    public String formatToCurrency() {
+        double value = this.price / 100.0;
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        
+        return decimalFormat.format(value);
     }
 
 }

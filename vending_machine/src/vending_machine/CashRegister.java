@@ -30,7 +30,7 @@ public class CashRegister {
 //			System.out.println(changeBill.getQuantity() + " x " + changeBill.getName());
 //		}
 //	}
-	
+//	
 	public ArrayList<Currency> calculateCurrency(int value) throws NoChangeException {
 		ArrayList<Currency> changeCurrencies = new ArrayList<Currency>();
 		int remainingValue = value;

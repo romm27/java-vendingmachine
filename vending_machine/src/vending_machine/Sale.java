@@ -29,19 +29,20 @@ public class Sale {
 	public ArrayList<String> generateSalesReport(){
 		ArrayList<String> report = new ArrayList<String>();
         report.add("Aqui está o histórico de vendas:\n");
-        double totalValue = 0;
-        for(Sale s: sales){
-            report.add(String.format("O produto '%s' custou %.2fR$ | Data da venda: %s às %sh.\n",
-            s.product.getName(),
-            s.product.getPrice(),
-            s.getDate(),
-            s.getTime()
-            ));
+        int totalValue = 0;
+        for (Sale s: sales) {
+            report.add(String.format("O produto '%s' custou R$ %s | Data da venda: %s às %sh.\n",
+						            s.product.getName(),
+						            s.product.formatToCurrency(),
+						            s.getDate(),
+						            s.getTime()
+						            )
+           );
             
          totalValue = totalValue + s.product.getPrice();
         }
         
-        report.add(String.format("\nO valor total de vendas foi de: %.2fR$", totalValue));
+        report.add(String.format("\nO valor total de vendas foi de: R$ %s", totalValue));
         return report;
 	}
 	
@@ -49,7 +50,7 @@ public class Sale {
 
 		File reportPath = new File("src" + FileSystems.getDefault().getSeparator() 
 				+ "vending_machine" + FileSystems.getDefault().getSeparator()
-				+ "recourses" + FileSystems.getDefault().getSeparator() + "report.txt");
+				+ "resources" + FileSystems.getDefault().getSeparator() + "report.txt");
 		
 		if (!reportPath.exists()) {
 			reportPath.createNewFile();
@@ -71,7 +72,7 @@ public class Sale {
 	public void writeReportOnFile () throws IOException {
 		File reportPath = new File("src" + FileSystems.getDefault().getSeparator() 
 				+ "vending_machine" + FileSystems.getDefault().getSeparator()
-				+ "recourses" + FileSystems.getDefault().getSeparator()+ "report.txt");
+				+ "resources" + FileSystems.getDefault().getSeparator()+ "report.txt");
 		
 		if (!reportPath.exists()) {
 			reportPath.createNewFile();
@@ -79,9 +80,9 @@ public class Sale {
 		
 		FileWriter writeReport = new FileWriter(reportPath, true);
 		
-		String message = String.format("O produto '%s' custou %.2fR$ | Data da venda: %s às %sh.\n",
+		String message = String.format("O produto '%s' custou R$ %s | Data da venda: %s às %sh.\n",
 	            this.product.getName(),
-	            this.product.getPrice(),
+	            this.product.formatToCurrency(),
 	            this.getDate(),
 	            this.getTime()
 	            );
