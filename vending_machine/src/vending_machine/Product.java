@@ -50,6 +50,10 @@ public class Product {
         return id;
     }
     
+    public ProductType getProductType() {
+        return productType;
+    }
+    
     public String formatToCurrency() {
         double value = this.price / 100.0;
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
