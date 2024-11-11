@@ -1,47 +1,66 @@
 package vending_machine;
 
 import java.util.ArrayList;
+import vending_machine.Product.ProductType;
 
 public class VendingMachine {
-	public static  ArrayList<Product> availableProducts = new ArrayList<Product>();
+	public ArrayList<Slot> slots = new ArrayList<Slot>();
+    private ArrayList<Product> products = new ArrayList<Product>();
+	private CashRegister cashRegister = new CashRegister();
 	
-	public boolean sell(Product product, double payment) throws NoChangeException, ProductUnavailableException, InsufficientPaymentException {
-		if (!product.isAvailable()) {
-            throw new ProductUnavailableException("O produto " + product.getName() + " está indisponível.");
+    public VendingMachine() {
+    	//TODO ler os produtos de um CSV, criar o arraylist de slots e passar como parametro do construtor
+        products.add(new Product(0, "refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300));
+        products.add(new Product(2, "suco musical", "Filhote de Tim Maia", ProductType.beverage, 490));
+        products.add(new Product(4, "cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350));
+        products.add(new Product(6, "fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145));
+        products.add(new Product(7, "refrigerante fluorescente", "Dr. Nefarious" , ProductType.beverage, 940));
+        
+        slots.add(new Slot(1, 8, products.get(0)));
+        slots.add(new Slot(2, 8, products.get(1)));
+        slots.add(new Slot(3, 8, products.get(2)));
+        slots.add(new Slot(4, 8, products.get(3)));
+        slots.add(new Slot(5, 8, products.get(4)));
+    }
+ 
+	public void validateSale(Slot slot, int payment) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
+		if (!slot.hasProduct()) {
+            throw new ProductUnavailableException();
         }
 
-        double productPrice = product.getPrice();
-        
+        int productPrice = slot.getProduct().getPrice();
         if (payment < productPrice) {
-            throw new InsufficientPaymentException("Pagamento insuficiente para o produto " + product.getName() + ".");
+            throw new InsufficientPaymentException();
         }
-
-        double changeAmount = payment - productPrice;
         
-        ArrayList<Currency> change = Currency.getChange(changeAmount);
-
-        if (change == null) {
-        	throw new NoChangeException("Máquina com estoque insuficiente de dinheiro para finalizar a venda.");
+        int changeAmount = payment - productPrice;
+        if (!cashRegister.hasChange(changeAmount)) {
+        	throw new PaymentCannotBeProcessedException();
         }
-
-        product.decreaseStock();
-
-        return true;
     }
 	
-	public void generateMenu() {
-        System.out.println("\n|------------------------------------ MENU ------------------------------------|\n");
+	public ArrayList<Currency> sell(Slot slot, int payment, PaymentMethods selectedPaymentMethod)
+			throws ProductUnavailableException, InsufficientPaymentException, NoChangeException, PaymentCannotBeProcessedException {
+		this.validateSale(slot, payment);
+		
+		PaymentMethod paymentMethod = selectedPaymentMethod == PaymentMethods.cash ? new Cash() : new Card();
+		paymentMethod.processPayment(payment);
+		
+		int changeAmount = payment - slot.getProduct().getPrice();
+		ArrayList<Currency> change = null;
+		if (selectedPaymentMethod == PaymentMethods.cash) {
+			change = this.cashRegister.withdraw(changeAmount);
+		}
 
-        int i = 1;
-        for (Product product : Product.getProducts()) {
-            System.out.printf("[ %d ]\t%s (%s) - R$ %.2f\n", i, product.getName(), product.getBrand(), product.getPrice());
-            i++;
-        }
-        System.out.printf("[ %d ]\tSair\n", i);
-        System.out.print("\nDigite a opção desejada: ");
+		Sale sale = new Sale(slot.getProduct());
+		sale.canWriteToFile();
+		
+		slot.decreaseQuantity();
+		
+		return change;
 	}
 	
-	public void goodByeMsg() {
-		System.out.println("Obrigado por usar a máquina de vendas! Volte sempre!");
-	}
+    public ArrayList<Slot> getSlots() {
+        return slots;
+    }
 }

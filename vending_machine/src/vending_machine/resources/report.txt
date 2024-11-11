@@ -1,0 +1,37 @@
+O produto 'Refrigerante de matte' custou 13.00R$ | Data da venda: 07/11/2024 às 02:03h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Suco de rosa' custou 5.15R$ | Data da venda: 07/11/2024 às 02:04h.
+O produto 'Refrigerante de matte' custou 13.00R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Refrigerante fluorescente' custou 9.40R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Batatas rústicas' custou 11.75R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Salgadinho sabor dor nas costas' custou 12.50R$ | Data da venda: 07/11/2024 às 02:05h.
+O produto 'Cerveja sabor tranquilidade' custou 13.50R$ | Data da venda: 07/11/2024 às 02:15h.
+O produto 'Pipoca Vacas voadoras' custou 7.50R$ | Data da venda: 07/11/2024 às 02:15h.
+O produto 'Refrigerante de matte' custou 13,00R$ | Data da venda: 07/11/2024 às 07:49h.
+O produto 'Cerveja sabor tranquilidade' custou 13,50R$ | Data da venda: 07/11/2024 às 21:35h.
+O produto 'Suco musical' custou 4,90R$ | Data da venda: 07/11/2024 às 21:35h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 07/11/2024 às 22:00h.
+O produto 'pipoca Vacas voadoras' custou 7,50R$ | Data da venda: 07/11/2024 às 22:35h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 08/11/2024 às 21:11h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 08:41h.
+O produto 'refrigerante fluorescente' custou 9,40R$ | Data da venda: 09/11/2024 às 09:29h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 09:29h.
+O produto 'refrigerante fluorescente' custou 9,40R$ | Data da venda: 09/11/2024 às 09:58h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:08h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 10:13h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 10:18h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:24h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:24h.
+O produto 'refrigerante de matte' custou 13,00R$ | Data da venda: 09/11/2024 às 10:33h.
+O produto 'suco musical' custou 4,90R$ | Data da venda: 09/11/2024 às 22:39h.
+O produto 'refrigerante fluorescente' custou R$ 9,40 | Data da venda: 09/11/2024 às 22:42h.
+O produto 'refrigerante de matte' custou R$ 13,00 | Data da venda: 09/11/2024 às 22:45h.
+O produto 'suco musical' custou R$ 4,90 | Data da venda: 09/11/2024 às 23:19h.
+O produto 'refrigerante de matte' custou R$ 13,00 | Data da venda: 09/11/2024 às 23:46h.
+O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 21:58h.
+O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 21:58h.
+O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 22:20h.
+O produto 'cerveja sabor tranquilidade' custou R$ 13,50 | Data da venda: 10/11/2024 às 22:20h.
