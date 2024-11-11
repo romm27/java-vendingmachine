@@ -1,7 +1,5 @@
 package vending_machine;
 
-import java.util.ArrayList;
-
 public class Slot {
 	private int id;
 	private int quantity;
@@ -26,5 +24,4 @@ public class Slot {
     public Product getProduct() {
     	return this.product;	
     }
-    
 }

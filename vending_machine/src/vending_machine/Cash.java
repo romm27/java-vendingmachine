@@ -1,6 +1,6 @@
 package vending_machine;
 
-public class Card extends PaymentMethod {
+public class Cash extends PaymentMethod{
 	@Override
 	public boolean processPayment(int value) {
 		return true;

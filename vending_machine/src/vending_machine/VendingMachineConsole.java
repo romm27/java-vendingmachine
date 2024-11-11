@@ -43,8 +43,8 @@ public class VendingMachineConsole {
 					int paymentMethodOption = scanner.nextInt();
 
 					switch (paymentMethodOption) {
-					case 1 -> paymentMethod = new Money();
-					case 2 -> paymentMethod = new Card();
+					case 1 -> paymentMethod = PaymentMethods.cash;
+					case 2 -> paymentMethod = PaymentMethods.card;
 					case 3 -> {
 						cancelMsg();
 						continue;
@@ -64,17 +64,15 @@ public class VendingMachineConsole {
 						
 						int payment = scanner.nextInt() * 100;
 
-						if (paymentMethod.processPayment(payment)) {
-							vendingMachine.sell(selectedSlot.getProduct(), payment);
-							successCashPaymentMsg();
-							removeProductFromMachineMsg(selectedSlot.getProduct());
-
-						} else {							
-							errorOnPaymentMsg();
+						ArrayList<Currency> change = vendingMachine.sell(selectedSlot, payment, paymentMethod);
+						for (Currency changeBill : change) {
+							System.out.println(changeBill.getQuantity() + " x " + changeBill.getName());
 						}
+						successCashPaymentMsg();
+						removeProductFromMachineMsg(selectedSlot.getProduct());
 
 					} else if (paymentMethodOption == 2) {						
-						vendingMachine.sell(selectedSlot.getProduct(), value);
+						vendingMachine.sell(selectedSlot, value, paymentMethod);
 						successCardPaymentMsg();
 						removeProductFromMachineMsg(selectedSlot.getProduct());
 
@@ -110,6 +108,8 @@ public class VendingMachineConsole {
 				noChangetMsg();
 				continue;
 				
+			} catch (PaymentCannotBeProcessedException e) {
+				e.printStackTrace();
 			}	
 		}
 		

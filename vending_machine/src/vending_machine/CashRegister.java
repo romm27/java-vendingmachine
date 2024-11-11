@@ -31,7 +31,7 @@ public class CashRegister {
 //		}
 //	}
 //	
-	public ArrayList<Currency> calculateCurrency(int value) throws NoChangeException {
+	public ArrayList<Currency> getCurrency(int value) throws NoChangeException {
 		ArrayList<Currency> changeCurrencies = new ArrayList<Currency>();
 		int remainingValue = value;
 		
@@ -57,11 +57,23 @@ public class CashRegister {
 		return changeCurrencies;
 	}
 	
-	public void withdraw(int value) throws NoChangeException {
-		ArrayList<Currency> changeCurrencies = this.calculateCurrency(value);
+	public ArrayList<Currency> withdraw(int value) throws NoChangeException {
+		ArrayList<Currency> changeCurrencies = this.getCurrency(value);
 
 		for (Currency currency : changeCurrencies) {
 			currencies.get(currency.getValue()).decrementQuantity(currency.getQuantity());
 		}
+		
+		return changeCurrencies;
+	}
+
+	public boolean hasChange(int changeAmount) {
+		try {
+			this.getCurrency(changeAmount);
+		} catch (NoChangeException e) {
+			return false;
+		} 
+		
+		return true;
 	}
 }
