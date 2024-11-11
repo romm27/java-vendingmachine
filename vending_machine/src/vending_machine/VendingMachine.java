@@ -1,5 +1,11 @@
 package vending_machine;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import vending_machine.Product.ProductType;
 
@@ -10,17 +16,41 @@ public class VendingMachine {
 	
     public VendingMachine() {
     	//TODO ler os produtos de um CSV, criar o arraylist de slots e passar como parametro do construtor
-        products.add(new Product(0, "refrigerante de matte", "Capivara Lysa", ProductType.beverage, 1300));
-        products.add(new Product(2, "suco musical", "Filhote de Tim Maia", ProductType.beverage, 490));
-        products.add(new Product(4, "cerveja sabor tranquilidade", "Programador tranquilão", ProductType.beverage, 1350));
-        products.add(new Product(6, "fuga do laboratório", "Capivara Lysa", ProductType.beverage, 1145));
-        products.add(new Product(7, "refrigerante fluorescente", "Dr. Nefarious" , ProductType.beverage, 940));
+        // read csv
+        File productsPath = new File("src" + FileSystems.getDefault().getSeparator() 
+				+ "vending_machine" + FileSystems.getDefault().getSeparator()
+				+ "resources" + FileSystems.getDefault().getSeparator() + "products.csv");
         
-        slots.add(new Slot(1, 8, products.get(0)));
-        slots.add(new Slot(2, 8, products.get(1)));
-        slots.add(new Slot(3, 8, products.get(2)));
-        slots.add(new Slot(4, 8, products.get(3)));
-        slots.add(new Slot(5, 8, products.get(4)));
+        BufferedReader reader = null;
+            String line;
+            try {
+                reader = new BufferedReader(new FileReader(productsPath));
+                int id = 0;
+                while ((line = reader.readLine()) != null) {
+                    String[] csvProduct = line.split(", ");
+                    Product product = new Product(Integer.parseInt(csvProduct[0]),
+                    		csvProduct[1],
+                    		csvProduct[2],
+                            ProductType.valueOf(csvProduct[3]),
+                            Integer.parseInt(csvProduct[4]
+                        ));
+                    products.add(product);
+                    slots.add(new Slot(id,8, product));
+                    id++;
+                }
+            } catch (FileNotFoundException e) {
+                System.err.println("Arquivo não encontrado: " + e.getMessage());
+            } catch (IOException e) {
+                System.err.println("Erro ao ler arquivo: " + e.getMessage());
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        System.err.println("Erro ao fechar o arquivo: " + e.getMessage());
+                    }
+                }
+            }   
     }
  
 	public void validateSale(Slot slot, int payment) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
