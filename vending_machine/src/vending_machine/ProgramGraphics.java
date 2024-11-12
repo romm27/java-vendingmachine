@@ -24,6 +24,7 @@ public class ProgramGraphics {
     static JLabel productSelectedDisplay = new JLabel(":)");
     static JButton creditButton = new JButton("Crédito");
     static JButton cashButton = new JButton("Dinheiro");
+    static JButton deleteButton;
     static JLabel cashSymbolDisplay = new JLabel("$");
     static JTextField cashInput = new JTextField("");
     static VendingMachine vendingMachine;
@@ -54,13 +55,13 @@ public class ProgramGraphics {
         		'7', '8', '9', 
         		'4', '5', '6',
         		'1', '2', '3', 
-        		'x', '0', 'x' };
+        		'<', '0', 'x' };
         
         char commands[] = {
         		'7', '8', '9', 
         		'4', '5', '6',
         		'1', '2', '3', 
-        		'x', '0', 'x' };
+        		'<', '0', 'x' };
         
         
         //productSelectionDisplay
@@ -110,6 +111,11 @@ public class ProgramGraphics {
                 button.setFont(new Font("Arial", Font.PLAIN, 10));
                 button.setMargin(new Insets(0, 0, 0, 0));
                 
+                if(commands[oneDimensionalIndex] == '<') {
+                	deleteButton = button;
+                	deleteButton.setEnabled(false);
+                }
+                
                 button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -139,16 +145,33 @@ public class ProgramGraphics {
     
     private static void onClickNumpad(char key, JLabel target) {
     	if(key == 'x') {
-    		output = "xx";
+    		output = "||";
     		target.setText(output);
     		setValidPurchase(false);
+    		deleteButton.setEnabled(false);
     		return;
     	}
+    	else if(key == '<') {
+    		if(output.length() != 0) {
+	    		output = output.substring(0, output.length() - 1);
+	    		if(output != "") {
+	    			target.setText(output + "|");
+	    		}
+	    		else {
+	    			target.setText("||");
+	    		}
+	    		setValidPurchase(false);
+	    		return;
+    		}
+    		else {
+    			return;
+    		}
+    	}
     	
+    	deleteButton.setEnabled(true);
     	if(output.length() == 1) {
     		output += key;
     		target.setText(output);
-    		
     		
     		Slot slot = null;
     		try {
@@ -163,6 +186,7 @@ public class ProgramGraphics {
     		else {
     			setOuput(":/", target);
     			setValidPurchase(false);
+    			deleteButton.setEnabled(false);
     		}
     	}
     	else {
