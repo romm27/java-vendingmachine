@@ -44,6 +44,12 @@ public class ProgramGraphics {
                 backgroundPanel.add(button);
             }
         }
+        JLabel productSelectedDisplay = new JLabel(":)");
+        int[] pos = normalizedToPixelPosition(initialX + 0.04, initialY - 0.175); 
+        productSelectedDisplay.setBounds(pos[0], pos[1], 50, 20);
+        productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
+        productSelectedDisplay.setForeground(Color.green);
+        backgroundPanel.add(productSelectedDisplay);
 
         frame.add(backgroundPanel);
         frame.setResizable(false);
