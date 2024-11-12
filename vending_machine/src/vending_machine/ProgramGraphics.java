@@ -54,6 +54,20 @@ public class ProgramGraphics {
         productSelectedDisplay.setForeground(Color.green);
         backgroundPanel.add(productSelectedDisplay);
         
+		JButton creditButton = new JButton("Crédito");
+        int[] creditButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075); 
+        creditButton.setBounds(creditButtonPos[0], creditButtonPos[1], 60, 20);
+        creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
+        creditButton.setMargin(new Insets(0, 0, 0, 0));
+        backgroundPanel.add(creditButton);
+        
+        JButton cashButton = new JButton("Dinheiro");
+        int[] cashButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03); 
+        cashButton.setBounds(cashButtonPos[0], cashButtonPos[1], 60, 20);
+        cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
+        cashButton.setMargin(new Insets(0, 0, 0, 0));
+        backgroundPanel.add(cashButton);
+        
         for(int y = 0; y < 4; y++) {
         	for(int x = 0; x < 3; x++) {
         		int oneDimensionalIndex = (3 - y)*3 + x; // Converts x and y to the command/values index
