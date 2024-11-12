@@ -3,7 +3,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.text.*;
 import java.awt.event.ComponentAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ComponentEvent;
 
 public class ProgramGraphics {
@@ -67,6 +70,20 @@ public class ProgramGraphics {
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
         backgroundPanel.add(cashButton);
+        
+        JLabel cashSymbolDisplay = new JLabel("$");
+        int[] cashSymbolPos = normalizedToPixelPosition(initialX + 0.11, initialY + 0.075 + 0.03 + 0.03); 
+        cashSymbolDisplay.setBounds(cashSymbolPos[0], cashSymbolPos[1], 50, 20);
+        cashSymbolDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
+        cashSymbolDisplay.setForeground(Color.white);
+        backgroundPanel.add(cashSymbolDisplay);
+        
+        JTextField cashInput = new JTextField("");
+        int[] cashInputPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03 + 0.03); 
+        cashInput.setBounds(cashInputPos[0], cashInputPos[1], 40, 20);
+        cashInput.setFont(new Font("Arial", Font.PLAIN, 15));
+        cashInput.setPreferredSize(new Dimension(200, 30)); 
+        backgroundPanel.add(cashInput);
         
         for(int y = 0; y < 4; y++) {
         	for(int x = 0; x < 3; x++) {
