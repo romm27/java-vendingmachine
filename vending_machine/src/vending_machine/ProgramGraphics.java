@@ -157,7 +157,7 @@ public class ProgramGraphics {
         	int x = i % rowSize;
         	int y = i / rowSize;
         	
-        	int[] productDisplayPos = normalizedToPixelPosition(displayInitialX + x * displayDeltaX, displayInitialY + y * displayDeltaY); 
+        	float[] productDisplayPos = new float[]{displayInitialX + x * displayDeltaX, displayInitialY + y * displayDeltaY};
         	ProductDisplay display = new ProductDisplay(vendingMachine.getSlot(i), productDisplayPos[0], productDisplayPos[1], frame);
         	productDisplays.add(display);
         	vendingMachine.getSlot(i).setProductDisplay(display);
