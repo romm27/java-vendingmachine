@@ -215,11 +215,13 @@ public class ProgramGraphics {
     	        case card:
     	            vendingMachine.sell(selectedSlot, 999999, PaymentMethods.card);
     	            purchaseText = String.format("%s foi comprado(a) no crédito com sucesso!", selectedSlot.getProduct().getName());
+    	            output = ":D";
     	            break;
     	        case cash:
     	        	int payment =  Math.round(Float.valueOf(cashInput.getText().replace(',', '.'))*100);
     	        	ArrayList<Currency> change = vendingMachine.sell(selectedSlot, payment, PaymentMethods.cash);
     	            purchaseText = String.format("%s foi comprado(a) em dinheiro com sucesso!", selectedSlot.getProduct().getName());
+    	            output = ":D";
     	            String currencyDump = "";
     	            for (Currency changeBill : change) {
     	            	currencyDump += "\n" + changeBill.getQuantity() + " x " + changeBill.getName();
@@ -234,18 +236,22 @@ public class ProgramGraphics {
     	    }
     	} catch (NoChangeException e) {
     	    purchaseText = "Erro: Sem troco!";
+    	    output = ":<";
     	} catch (ProductUnavailableException e) {
     	    purchaseText = "Erro: Sem estoque!";
+    	    output = ":(";
     	} catch (InsufficientPaymentException e) {
     	    purchaseText = "Erro: Dinheiro insuficiente :/";
+    	    output = ":/";
     	} catch (NumberFormatException e) {
     		purchaseText = "Erro: Por favor insira um valor válido!";
+    		output = ":|";
     	} catch (Exception e) {
     	    purchaseText = "Erro inesperado: " + e.getMessage();
+    	    output = ":o";
     	    e.printStackTrace();
     	}
     	
-    	output = ":D";
     	productSelectedDisplay.setText(output);
     	deleteButton.setEnabled(false);
     	showMessageDialog(null, purchaseText);

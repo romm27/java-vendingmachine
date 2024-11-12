@@ -70,3 +70,6 @@ O produto 'cerveja sabor tranquilidade' custou R$ 13.50 | Data da venda: 12/11/2
 O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:41h.
 O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:42h.
 O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:43h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:44h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 20:46h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:46h.
