@@ -3,10 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.text.*;
 import java.awt.event.ComponentAdapter;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.ComponentEvent;
 
 public class ProgramGraphics {
@@ -21,10 +18,18 @@ public class ProgramGraphics {
     
     private static String output = ":)";
 
-    public static JFrame createFrame(VendingMachine vendingMachine) {
+    static JLabel productSelectedDisplay = new JLabel(":)");
+    static JButton creditButton = new JButton("Crédito");
+    static JButton cashButton = new JButton("Dinheiro");
+    static JLabel cashSymbolDisplay = new JLabel("$");
+    static JTextField cashInput = new JTextField("");
+    static VendingMachine vendingMachine;
+
+    public static JFrame createFrame(VendingMachine machine) {
         JFrame frame = new JFrame("Vending Machine");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        vendingMachine = machine;
 
         BackgroundPanel backgroundPanel = new BackgroundPanel("images/machine.png"); 
         backgroundPanel.setLayout(null); 
@@ -50,35 +55,35 @@ public class ProgramGraphics {
         		'>', '0', 'x' };
         
         
-        JLabel productSelectedDisplay = new JLabel(":)");
+        //productSelectionDisplay
         int[] displayPos = normalizedToPixelPosition(initialX + 0.04, initialY - 0.175); 
         productSelectedDisplay.setBounds(displayPos[0], displayPos[1], 50, 20);
         productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         productSelectedDisplay.setForeground(Color.green);
         backgroundPanel.add(productSelectedDisplay);
         
-		JButton creditButton = new JButton("Crédito");
+		//creditButton
         int[] creditButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075); 
         creditButton.setBounds(creditButtonPos[0], creditButtonPos[1], 60, 20);
         creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
         creditButton.setMargin(new Insets(0, 0, 0, 0));
         backgroundPanel.add(creditButton);
         
-        JButton cashButton = new JButton("Dinheiro");
+        //cashButton 
         int[] cashButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03); 
         cashButton.setBounds(cashButtonPos[0], cashButtonPos[1], 60, 20);
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
         backgroundPanel.add(cashButton);
         
-        JLabel cashSymbolDisplay = new JLabel("$");
+        //cashSymbolDisplay
         int[] cashSymbolPos = normalizedToPixelPosition(initialX + 0.11, initialY + 0.075 + 0.03 + 0.03); 
         cashSymbolDisplay.setBounds(cashSymbolPos[0], cashSymbolPos[1], 50, 20);
         cashSymbolDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         cashSymbolDisplay.setForeground(Color.white);
         backgroundPanel.add(cashSymbolDisplay);
         
-        JTextField cashInput = new JTextField("");
+        //cashInput
         int[] cashInputPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03 + 0.03); 
         cashInput.setBounds(cashInputPos[0], cashInputPos[1], 40, 20);
         cashInput.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -97,7 +102,7 @@ public class ProgramGraphics {
                 button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						onClickNumpad(commands[oneDimensionalIndex], productSelectedDisplay, vendingMachine);
+						onClickNumpad(commands[oneDimensionalIndex], productSelectedDisplay);
 						frame.repaint();
 					}
                 });
@@ -122,10 +127,11 @@ public class ProgramGraphics {
     	return output;
     }
     
-    private static void onClickNumpad(char key, JLabel target, VendingMachine vendingMachine) {
+    private static void onClickNumpad(char key, JLabel target) {
     	if(output.length() == 1) {
     		output += key;
     		target.setText(output);
+    		
     		
     		Slot slot = null;
     		try {
@@ -147,6 +153,11 @@ public class ProgramGraphics {
     	}
     }
     
+    private void setValidPurchase(boolean status) {
+    	if(status) {
+    		
+    	}
+    }
 
     private static class BackgroundPanel extends JPanel {
         private static final long serialVersionUID = 1L;
