@@ -46,13 +46,13 @@ public class ProgramGraphics {
         		'7', '8', '9', 
         		'4', '5', '6',
         		'1', '2', '3', 
-        		'>', '0', 'x' };
+        		'x', '0', 'x' };
         
         char commands[] = {
         		'7', '8', '9', 
         		'4', '5', '6',
         		'1', '2', '3', 
-        		'>', '0', 'x' };
+        		'x', '0', 'x' };
         
         
         //productSelectionDisplay
@@ -67,6 +67,7 @@ public class ProgramGraphics {
         creditButton.setBounds(creditButtonPos[0], creditButtonPos[1], 60, 20);
         creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
         creditButton.setMargin(new Insets(0, 0, 0, 0));
+        creditButton.setEnabled(false);
         backgroundPanel.add(creditButton);
         
         //cashButton 
@@ -74,6 +75,7 @@ public class ProgramGraphics {
         cashButton.setBounds(cashButtonPos[0], cashButtonPos[1], 60, 20);
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
+        cashButton.setEnabled(false);
         backgroundPanel.add(cashButton);
         
         //cashSymbolDisplay
@@ -87,7 +89,8 @@ public class ProgramGraphics {
         int[] cashInputPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03 + 0.03); 
         cashInput.setBounds(cashInputPos[0], cashInputPos[1], 40, 20);
         cashInput.setFont(new Font("Arial", Font.PLAIN, 15));
-        cashInput.setPreferredSize(new Dimension(200, 30)); 
+        cashInput.setPreferredSize(new Dimension(200, 30));
+        cashInput.setEnabled(false);
         backgroundPanel.add(cashInput);
         
         for(int y = 0; y < 4; y++) {
@@ -128,6 +131,13 @@ public class ProgramGraphics {
     }
     
     private static void onClickNumpad(char key, JLabel target) {
+    	if(key == 'x') {
+    		output = "xx";
+    		target.setText(output);
+    		setValidPurchase(false);
+    		return;
+    	}
+    	
     	if(output.length() == 1) {
     		output += key;
     		target.setText(output);
@@ -141,10 +151,11 @@ public class ProgramGraphics {
     			slot = null;
     		}
     		if(slot != null) {
-    			//Liberar cartão ou dinheiro
+    			setValidPurchase(true);
     		}
     		else {
     			setOuput(":/", target);
+    			setValidPurchase(false);
     		}
     	}
     	else {
@@ -153,9 +164,13 @@ public class ProgramGraphics {
     	}
     }
     
-    private void setValidPurchase(boolean status) {
-    	if(status) {
-    		
+    private static void setValidPurchase(boolean status) {
+    	creditButton.setEnabled(status);
+    	cashButton.setEnabled(status);
+    	cashInput.setEnabled(status);
+    	
+    	if(!status) {
+    		cashInput.setText("");
     	}
     }
 
