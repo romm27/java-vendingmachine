@@ -14,10 +14,12 @@ public class VendingMachine {
     private ArrayList<Product> products = new ArrayList<Product>();
 	private CashRegister cashRegister = new CashRegister();
 	
+	private int catalogueSize = 12;
+	
     public VendingMachine() {
     	//TODO ler os produtos de um CSV, criar o arraylist de slots e passar como parametro do construtor
     	
-    	for(int i = 0; i < 24; i++) {
+    	for(int i = 0; i < getCatalogueSize(); i++) {
     		slots.add(new Slot(i, 0, null));
     	}
     	
@@ -32,13 +34,13 @@ public class VendingMachine {
                 reader = new BufferedReader(new FileReader(productsPath));
                 int id = 0;
                 while ((line = reader.readLine()) != null) {
-                    String[] csvProduct = line.split(", ");
+                    String[] csvProduct = line.split(",");
                     Product product = new Product(Integer.parseInt(csvProduct[0]),
-                    		csvProduct[1],
-                    		csvProduct[2],
-                            ProductType.valueOf(csvProduct[3]),
-                            Integer.parseInt(csvProduct[4]
-                        ));
+                    		csvProduct[1].trim(),
+                    		csvProduct[2].trim(),
+                            ProductType.valueOf(csvProduct[3].trim()),
+                            Integer.parseInt(csvProduct[4]),
+                            csvProduct[5]);
                     products.add(product);
                     slots.get(id).setProduct(product);
                     slots.get(id).setQuantity(10);
@@ -115,4 +117,8 @@ public class VendingMachine {
     public ArrayList<Slot> getSlots() {
         return slots;
     }
+
+	public int getCatalogueSize() {
+		return catalogueSize;
+	}
 }

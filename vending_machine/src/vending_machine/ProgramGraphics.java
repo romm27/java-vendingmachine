@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -20,6 +21,7 @@ public class ProgramGraphics {
     public static int WINDOW_HEIGHT = HEIGHT_RATIO * WINDOW_SIZE_MULTIPLIER;
     
     private static String displayPlaceholder = "|";
+    private static int rowSize = 3;
     
     private static String output = ":)";
 
@@ -32,9 +34,11 @@ public class ProgramGraphics {
     static VendingMachine vendingMachine;
     static JFrame frame;
     static Slot lastValidSlot = null;
+
+    private ArrayList<ProductDisplay> productDisplays = new ArrayList<ProductDisplay>();
     
     public ProgramGraphics(VendingMachine vendingMachine) {
-    	createFrame(vendingMachine);
+			createFrame(vendingMachine);
     }
 
     public static void createFrame(VendingMachine machine) {
@@ -47,10 +51,10 @@ public class ProgramGraphics {
         backgroundPanel.setLayout(null); 
         
         //Numpad offsets
-        float initialX = 0.785f;
-        float initialY = 0.34f;
-        float deltaX = 0.05f;
-        float deltaY = -0.025f;
+        float numpadInitialX = 0.785f;
+        float numpadInitialY = 0.34f;
+        float numapdDeltaX = 0.05f;
+        float numpadDeltaY = -0.025f;
         
         // Keypad
         
@@ -68,14 +72,14 @@ public class ProgramGraphics {
         
         
         //productSelectionDisplay
-        int[] displayPos = normalizedToPixelPosition(initialX + 0.04, initialY - 0.175); 
+        int[] displayPos = normalizedToPixelPosition(numpadInitialX + 0.04, numpadInitialY - 0.175); 
         productSelectedDisplay.setBounds(displayPos[0], displayPos[1], 50, 20);
         productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         productSelectedDisplay.setForeground(Color.green);
         backgroundPanel.add(productSelectedDisplay);
         
 		//creditButton
-        int[] creditButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075); 
+        int[] creditButtonPos = normalizedToPixelPosition(numpadInitialX, numpadInitialY + 0.075); 
         creditButton.setBounds(creditButtonPos[0], creditButtonPos[1], 60, 20);
         creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
         creditButton.setMargin(new Insets(0, 0, 0, 0));
@@ -89,7 +93,7 @@ public class ProgramGraphics {
         backgroundPanel.add(creditButton);
         
         //cashButton 
-        int[] cashButtonPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03); 
+        int[] cashButtonPos = normalizedToPixelPosition(numpadInitialX, numpadInitialY + 0.075 + 0.03); 
         cashButton.setBounds(cashButtonPos[0], cashButtonPos[1], 60, 20);
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
@@ -103,14 +107,14 @@ public class ProgramGraphics {
         backgroundPanel.add(cashButton);
         
         //cashSymbolDisplay
-        int[] cashSymbolPos = normalizedToPixelPosition(initialX + 0.11, initialY + 0.075 + 0.03 + 0.03); 
+        int[] cashSymbolPos = normalizedToPixelPosition(numpadInitialX + 0.11, numpadInitialY + 0.075 + 0.03 + 0.03); 
         cashSymbolDisplay.setBounds(cashSymbolPos[0], cashSymbolPos[1], 50, 20);
         cashSymbolDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         cashSymbolDisplay.setForeground(Color.white);
         backgroundPanel.add(cashSymbolDisplay);
         
         //cashInput
-        int[] cashInputPos = normalizedToPixelPosition(initialX, initialY + 0.075 + 0.03 + 0.03); 
+        int[] cashInputPos = normalizedToPixelPosition(numpadInitialX, numpadInitialY + 0.075 + 0.03 + 0.03); 
         cashInput.setBounds(cashInputPos[0], cashInputPos[1], 40, 20);
         cashInput.setFont(new Font("Arial", Font.PLAIN, 15));
         cashInput.setPreferredSize(new Dimension(200, 30));
@@ -122,7 +126,7 @@ public class ProgramGraphics {
         	for(int x = 0; x < 3; x++) {
         		int oneDimensionalIndex = (3 - y)*3 + x; // Converts x and y to the command/values index
         		JButton button = new JButton(String.valueOf(values[oneDimensionalIndex]));
-                int[] buttonPos = normalizedToPixelPosition(initialX + x * deltaX, initialY + y * deltaY); 
+                int[] buttonPos = normalizedToPixelPosition(numpadInitialX + x * numapdDeltaX, numpadInitialY + y * numpadDeltaY); 
                 button.setBounds(buttonPos[0], buttonPos[1], 20, 20);
                 button.setFont(new Font("Arial", Font.PLAIN, 10));
                 button.setMargin(new Insets(0, 0, 0, 0));
@@ -144,9 +148,17 @@ public class ProgramGraphics {
         }
         
         
+        float displayInitialX = 0.125f;
+        float displayInitialY = 0.05f;
+        float displayDeltaX = 0.2f;
+        float displayDeltaY = 0.15f;
         //Slots
         for(int i = 0; i < vendingMachine.getSlots().size();i++) {
+        	int x = i % rowSize;
+        	int y = i / rowSize;
         	
+        	int[] productDisplayPos = normalizedToPixelPosition(displayInitialX + x * displayDeltaX, displayInitialY + y * displayDeltaY); 
+        	ProductDisplay display = new ProductDisplay(vendingMachine.getSlot(i), productDisplayPos[0], productDisplayPos[1], frame);
         }
 
         frame.add(backgroundPanel);

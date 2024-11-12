@@ -9,13 +9,15 @@ public class Product {
 	public enum ProductType { food, beverage }
 	private ProductType productType; 
 	private int price;
+	private String imagePath;
 	
-    public Product(int id, String name, String brand, ProductType productType, int price) {
+    public Product(int id, String name, String brand, ProductType productType, int price, String imagePath) {
         this.id = id;
         this.name = name;
         this.brand = brand;
         this.productType = productType;
         this.price = price;
+        this.imagePath = imagePath;
     }
 
 	public void setName(String name) {
@@ -60,5 +62,13 @@ public class Product {
         
         return decimalFormat.format(value);
     }
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 }
