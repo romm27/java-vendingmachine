@@ -3,7 +3,9 @@ package vending_machine;
 public class Main {
 
 	public static void main(String[] args) {
-		ProgramGraphics.createFrame();
+		VendingMachine vendingMachine = new VendingMachine();
+		
+		ProgramGraphics.createFrame(vendingMachine);
 
 	}
 

@@ -1,4 +1,6 @@
 package vending_machine;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
@@ -11,8 +13,12 @@ public class ProgramGraphics {
     
     public static int WINDOW_WIDTH = WIDTH_RATIO * WINDOW_SIZE_MULTIPLIER;
     public static int WINDOW_HEIGHT = HEIGHT_RATIO * WINDOW_SIZE_MULTIPLIER;
+    
+    private static String displayPlaceholder = "|";
+    
+    private static String output = ":)";
 
-    public static JFrame createFrame() {
+    public static JFrame createFrame(VendingMachine vendingMachine) {
         JFrame frame = new JFrame("Vending Machine");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -34,28 +40,82 @@ public class ProgramGraphics {
         		'1', '2', '3', 
         		'>', '0', 'x' };
         
-        for(int y = 0; y < 4; y++) {
-        	for(int x = 0; x < 3; x++) {
-        		JButton button = new JButton(String.valueOf(values[(3 - y)*3 + x]));
-                int[] pos = normalizedToPixelPosition(initialX + x * deltaX, initialY + y * deltaY); 
-                button.setBounds(pos[0], pos[1], 20, 20);
-                button.setFont(new Font("Arial", Font.PLAIN, 10));
-                button.setMargin(new Insets(0, 0, 0, 0));
-                backgroundPanel.add(button);
-            }
-        }
+        char commands[] = {
+        		'7', '8', '9', 
+        		'4', '5', '6',
+        		'1', '2', '3', 
+        		'>', '0', 'x' };
+        
+        
         JLabel productSelectedDisplay = new JLabel(":)");
-        int[] pos = normalizedToPixelPosition(initialX + 0.04, initialY - 0.175); 
-        productSelectedDisplay.setBounds(pos[0], pos[1], 50, 20);
+        int[] displayPos = normalizedToPixelPosition(initialX + 0.04, initialY - 0.175); 
+        productSelectedDisplay.setBounds(displayPos[0], displayPos[1], 50, 20);
         productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         productSelectedDisplay.setForeground(Color.green);
         backgroundPanel.add(productSelectedDisplay);
+        
+        for(int y = 0; y < 4; y++) {
+        	for(int x = 0; x < 3; x++) {
+        		int oneDimensionalIndex = (3 - y)*3 + x; // Converts x and y to the command/values index
+        		JButton button = new JButton(String.valueOf(values[oneDimensionalIndex]));
+                int[] buttonPos = normalizedToPixelPosition(initialX + x * deltaX, initialY + y * deltaY); 
+                button.setBounds(buttonPos[0], buttonPos[1], 20, 20);
+                button.setFont(new Font("Arial", Font.PLAIN, 10));
+                button.setMargin(new Insets(0, 0, 0, 0));
+                
+                button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						onClickNumpad(commands[oneDimensionalIndex], productSelectedDisplay, vendingMachine);
+						frame.repaint();
+					}
+                });
+                
+                backgroundPanel.add(button);
+            }
+        }
 
         frame.add(backgroundPanel);
         frame.setResizable(false);
         frame.setVisible(true);
         return frame;
     }
+    
+    //Methods
+    public static void setOuput(String value, JLabel target) {
+    	output = value;
+    	target.setText(output);
+    }
+    
+    public static String getOutput() {
+    	return output;
+    }
+    
+    private static void onClickNumpad(char key, JLabel target, VendingMachine vendingMachine) {
+    	if(output.length() == 1) {
+    		output += key;
+    		target.setText(output);
+    		
+    		Slot slot = null;
+    		try {
+    			slot = vendingMachine.getSlot(Integer.valueOf(output));
+    		}
+    		catch (Exception e){
+    			slot = null;
+    		}
+    		if(slot != null) {
+    			//Liberar cartão ou dinheiro
+    		}
+    		else {
+    			setOuput(":/", target);
+    		}
+    	}
+    	else {
+    		output = String.valueOf(key);
+    		target.setText(output + displayPlaceholder);
+    	}
+    }
+    
 
     private static class BackgroundPanel extends JPanel {
         private static final long serialVersionUID = 1L;

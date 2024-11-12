@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import vending_machine.Product.ProductType;
 
 public class VendingMachine {
-	public ArrayList<Slot> slots = new ArrayList<Slot>();
+	private ArrayList<Slot> slots = new ArrayList<Slot>();
     private ArrayList<Product> products = new ArrayList<Product>();
 	private CashRegister cashRegister = new CashRegister();
 	
@@ -88,6 +88,15 @@ public class VendingMachine {
 		slot.decreaseQuantity();
 		
 		return change;
+	}
+	
+	public Slot getSlot(int id) {
+		try {
+			return slots.get(id);
+		}
+		catch (Exception e){
+			return null;
+		}
 	}
 	
     public ArrayList<Slot> getSlots() {
