@@ -5,9 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.GraphicsDevice;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ProgramGraphics {
     public static int WINDOW_SIZE_MULTIPLIER = 8;
@@ -29,6 +31,7 @@ public class ProgramGraphics {
     static JTextField cashInput = new JTextField("");
     static VendingMachine vendingMachine;
     static JFrame frame;
+    static Slot lastValidSlot = null;
     
     public ProgramGraphics(VendingMachine vendingMachine) {
     	createFrame(vendingMachine);
@@ -77,6 +80,12 @@ public class ProgramGraphics {
         creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
         creditButton.setMargin(new Insets(0, 0, 0, 0));
         creditButton.setEnabled(false);
+        creditButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				onPurchase(lastValidSlot, PaymentMethods.card);
+			}
+        });
         backgroundPanel.add(creditButton);
         
         //cashButton 
@@ -85,6 +94,12 @@ public class ProgramGraphics {
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
         cashButton.setEnabled(false);
+        cashButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				onPurchase(lastValidSlot, PaymentMethods.cash);
+			}
+        });
         backgroundPanel.add(cashButton);
         
         //cashSymbolDisplay
@@ -116,7 +131,6 @@ public class ProgramGraphics {
                 	deleteButton = button;
                 	deleteButton.setEnabled(false);
                 }
-                
                 button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -189,6 +203,7 @@ public class ProgramGraphics {
     		}
     		if(slot != null) {
     			setValidPurchase(true);
+    			lastValidSlot = slot;
     		}
     		else {
     			setOuput(":/", target);
@@ -202,14 +217,48 @@ public class ProgramGraphics {
     	}
     }
     
+    private static void onPurchase(Slot selectedSlot, PaymentMethods paymentMethods) {
+    	String purchaseText = "";
+    	try {
+    	    switch (paymentMethods) {
+    	        case card:
+    	            vendingMachine.sell(selectedSlot, 999999, PaymentMethods.card);
+    	            purchaseText = String.format("%s foi comprado no crédito com sucesso!", selectedSlot.getProduct().getName());
+    	            break;
+    	        case cash:
+    	        	int payment =  Integer.valueOf(cashInput.getText()) * 100;
+    	        	ArrayList<Currency> change = vendingMachine.sell(selectedSlot, payment, PaymentMethods.cash);
+    	            purchaseText = String.format("%s foi comprado em dinheiro com sucesso!\n aqui está o seu troco...", selectedSlot.getProduct().getName());
+    	            String currencyDump = "";
+    	            for (Currency changeBill : change) {
+    	            	currencyDump += "\n" + changeBill.getQuantity() + " x " + changeBill.getName();
+					}
+    	            purchaseText += currencyDump;
+    	            break;
+    	        default:
+    	            throw new IllegalArgumentException("Método de pagamento desconhecido!");
+    	    }
+    	} catch (NoChangeException e) {
+    	    purchaseText = "Erro: Sem troco!";
+    	} catch (ProductUnavailableException e) {
+    	    purchaseText = "Erro: Sem estoque!";
+    	} catch (InsufficientPaymentException e) {
+    	    purchaseText = "Erro: Dinheiro insuficiente :/";
+    	} catch (NumberFormatException e) {
+    		purchaseText = "Erro: Por favor insira um valor válido!";
+    	} catch (Exception e) {
+    	    purchaseText = "Erro inesperado: " + e.getMessage();
+    	    e.printStackTrace();
+    	}
+    	
+    	showMessageDialog(null, purchaseText);
+    }
+    
     private static void setValidPurchase(boolean status) {
     	creditButton.setEnabled(status);
     	cashButton.setEnabled(status);
     	cashInput.setEnabled(status);
-    	
-    	if(!status) {
-    		cashInput.setText("");
-    	}
+
     }
 
     private static class BackgroundPanel extends JPanel {

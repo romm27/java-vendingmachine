@@ -60,7 +60,7 @@ public class VendingMachine {
             }   
     }
  
-	public void validateSale(Slot slot, int payment) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
+	public void validateSale(Slot slot, int payment, PaymentMethods selectedPaymentMethod) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
 		if (!slot.hasProduct()) {
             throw new ProductUnavailableException();
         }
@@ -71,14 +71,20 @@ public class VendingMachine {
         }
         
         int changeAmount = payment - productPrice;
-        if (!cashRegister.hasChange(changeAmount)) {
+        if (selectedPaymentMethod == PaymentMethods.cash && !cashRegister.hasChange(changeAmount)) {
         	throw new PaymentCannotBeProcessedException();
         }
     }
 	
+	public ArrayList<Currency> sell(int slot, int payment, PaymentMethods selectedPaymentMethod){
+		int slotId = -1;
+		slotId = slots.indexOf(slot);
+		return sell(slotId, payment, selectedPaymentMethod);
+	}
+	
 	public ArrayList<Currency> sell(Slot slot, int payment, PaymentMethods selectedPaymentMethod)
 			throws ProductUnavailableException, InsufficientPaymentException, NoChangeException, PaymentCannotBeProcessedException {
-		this.validateSale(slot, payment);
+		this.validateSale(slot, payment, selectedPaymentMethod);
 		
 		PaymentMethod paymentMethod = selectedPaymentMethod == PaymentMethods.cash ? new Cash() : new Card();
 		paymentMethod.processPayment(payment);
