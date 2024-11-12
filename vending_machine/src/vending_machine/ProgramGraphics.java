@@ -102,6 +102,7 @@ public class ProgramGraphics {
         cashInput.setEnabled(false);
         backgroundPanel.add(cashInput);
         
+        //Numpad
         for(int y = 0; y < 4; y++) {
         	for(int x = 0; x < 3; x++) {
         		int oneDimensionalIndex = (3 - y)*3 + x; // Converts x and y to the command/values index
@@ -126,6 +127,12 @@ public class ProgramGraphics {
                 
                 backgroundPanel.add(button);
             }
+        }
+        
+        
+        //Slots
+        for(int i = 0; i < vendingMachine.getSlots().size();i++) {
+        	
         }
 
         frame.add(backgroundPanel);
