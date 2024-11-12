@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -307,16 +308,12 @@ public class ProgramGraphics {
     }
 
     public static int[] normalizedToPixelPosition(double normalizedX, double normalizedY) {
-        double screenResolutionDpi = Toolkit.getDefaultToolkit().getScreenResolution();
-
-        double standardDpi = 96.0;
-
-        double scaleFactorX = screenResolutionDpi / standardDpi;
-        double scaleFactorY = scaleFactorX; 
-
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        scaleFactorX *= gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
-        scaleFactorY *= gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
+        GraphicsConfiguration gc = gd.getDefaultConfiguration();
+        AffineTransform transform = gc.getDefaultTransform();
+
+        double scaleFactorX = transform.getScaleX();
+        double scaleFactorY = transform.getScaleY();
 
         int adjustedWindowWidth = (int) (WINDOW_WIDTH * scaleFactorX);
         int adjustedWindowHeight = (int) (WINDOW_HEIGHT * scaleFactorY);
