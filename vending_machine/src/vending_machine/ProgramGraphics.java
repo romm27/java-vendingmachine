@@ -40,10 +40,10 @@ public class ProgramGraphics {
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         vendingMachine = machine;
 
-        BackgroundPanel backgroundPanel = new BackgroundPanel("images/machine.png"); 
+        BackgroundPanel backgroundPanel = new BackgroundPanel("images/machine_empty.png"); 
         backgroundPanel.setLayout(null); 
         
-        //Numpad Settings
+        //Numpad offsets
         float initialX = 0.785f;
         float initialY = 0.34f;
         float deltaX = 0.05f;
