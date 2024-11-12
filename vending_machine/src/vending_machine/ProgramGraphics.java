@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
+import java.awt.GraphicsDevice;
 
 public class ProgramGraphics {
     public static int WINDOW_SIZE_MULTIPLIER = 8;
@@ -24,9 +27,14 @@ public class ProgramGraphics {
     static JLabel cashSymbolDisplay = new JLabel("$");
     static JTextField cashInput = new JTextField("");
     static VendingMachine vendingMachine;
+    static JFrame frame;
+    
+    public ProgramGraphics(VendingMachine vendingMachine) {
+    	createFrame(vendingMachine);
+    }
 
-    public static JFrame createFrame(VendingMachine machine) {
-        JFrame frame = new JFrame("Vending Machine");
+    public static void createFrame(VendingMachine machine) {
+        frame = new JFrame("Vending Machine");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         vendingMachine = machine;
@@ -117,7 +125,6 @@ public class ProgramGraphics {
         frame.add(backgroundPanel);
         frame.setResizable(false);
         frame.setVisible(true);
-        return frame;
     }
     
     //Methods
@@ -203,8 +210,19 @@ public class ProgramGraphics {
     }
 
     public static int[] normalizedToPixelPosition(double normalizedX, double normalizedY) {
-        int pixelX = (int) Math.round(normalizedX * WINDOW_WIDTH);
-        int pixelY = (int) Math.round(normalizedY * WINDOW_HEIGHT);
+        double scaleX = Toolkit.getDefaultToolkit().getScreenResolution() / 96.0; 
+        double scaleY = scaleX; 
+        
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        scaleX = gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
+        scaleY = gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
+        
+        int adjustedWindowWidth = (int) (WINDOW_WIDTH * scaleX);
+        int adjustedWindowHeight = (int) (WINDOW_HEIGHT * scaleY);
+
+        int pixelX = (int) Math.round(normalizedX * adjustedWindowWidth);
+        int pixelY = (int) Math.round(normalizedY * adjustedWindowHeight);
+        
         return new int[] { pixelX, pixelY };
     }
 }
