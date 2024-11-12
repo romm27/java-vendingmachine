@@ -119,7 +119,7 @@ public class ProgramGraphics {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        onClickNumpad(keypadValues[oneDimensionalIndex], productSelectedDisplay);
+                        onClickNumpad(keypadValues[oneDimensionalIndex]);
                         frame.repaint();
                     }
                 });
@@ -146,19 +146,19 @@ public class ProgramGraphics {
     }
     
     //Methods
-    public static void setOuput(String value, JLabel target) {
+    public static void setOuput(String value) {
     	output = value;
-    	target.setText(output);
+    	productSelectedDisplay.setText(output);
     }
     
     public static String getOutput() {
     	return output;
     }
     
-    private static void onClickNumpad(char key, JLabel target) {
+    private static void onClickNumpad(char key) {
     	if(key == 'x') {
     		output = "||";
-    		target.setText(output);
+    		productSelectedDisplay.setText(output);
     		setValidPurchase(false);
     		deleteButton.setEnabled(false);
     		return;
@@ -167,10 +167,10 @@ public class ProgramGraphics {
     		if(output.length() != 0) {
 	    		output = output.substring(0, output.length() - 1);
 	    		if(output != "") {
-	    			target.setText(output + "|");
+	    			productSelectedDisplay.setText(output + "|");
 	    		}
 	    		else {
-	    			target.setText("||");
+	    			productSelectedDisplay.setText("||");
 	    		}
 	    		setValidPurchase(false);
 	    		return;
@@ -183,7 +183,7 @@ public class ProgramGraphics {
     	deleteButton.setEnabled(true);
     	if(output.length() == 1) {
     		output += key;
-    		target.setText(output);
+    		productSelectedDisplay.setText(output);
     		
     		Slot slot = null;
     		try {
@@ -197,14 +197,14 @@ public class ProgramGraphics {
     			lastValidSlot = slot;
     		}
     		else {
-    			setOuput(":/", target);
+    			setOuput(":/");
     			setValidPurchase(false);
     			deleteButton.setEnabled(false);
     		}
     	}
     	else {
     		output = String.valueOf(key);
-    		target.setText(output + displayPlaceholder);
+    		productSelectedDisplay.setText(output + displayPlaceholder);
     	}
     }
     
@@ -245,6 +245,9 @@ public class ProgramGraphics {
     	    e.printStackTrace();
     	}
     	
+    	output = ":D";
+    	productSelectedDisplay.setText(output);
+    	deleteButton.setEnabled(false);
     	showMessageDialog(null, purchaseText);
     }
     

@@ -20,12 +20,13 @@ public class ProductDisplay {
 		
 		BufferedImage picture = null;
 		try {
-			if (slot.getProduct() == null) {
+			if (isEmptySlot) {
 				picture = ImageIO.read(new File(emptySlotImagePath));
 			} else {
 				picture = ImageIO.read(new File(slot.getProduct().getImagePath()));
 			}
 		} catch (IOException e) {
+			System.out.println("Error caused by slot:" + slot.getId());
 			e.printStackTrace();
 		}
 		
