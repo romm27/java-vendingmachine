@@ -44,7 +44,7 @@ public class ProgramGraphics {
         backgroundPanel.setLayout(null); 
         
         // Numpad offsets
-        int numpadInitialX = 290; 
+        int numpadInitialX = 280; 
         int numpadInitialY = 220;  
         int numpadDeltaX = 20;
         int numpadDeltaY = 20;
@@ -59,9 +59,9 @@ public class ProgramGraphics {
        
         
 
-        productSelectedDisplay.setBounds(numpadInitialX + 20, numpadInitialY - 80, 50, 20);
+        productSelectedDisplay.setBounds(numpadInitialX + 15, numpadInitialY - 80, 50, 20);
         productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
-        productSelectedDisplay.setForeground(Color.green);
+        productSelectedDisplay.setForeground(Color.black);
         backgroundPanel.add(productSelectedDisplay);
         
 
@@ -128,10 +128,10 @@ public class ProgramGraphics {
         }
 
         // Slots
-        int displayInitialX = 30;
+        int displayInitialX = 25;
         int displayInitialY = 30;
         int displayDeltaX = 80;
-        int displayDeltaY = 130; 
+        int displayDeltaY = 132; 
         for (int i = 0; i < vendingMachine.getSlots().size(); i++) {
             int x = i % rowSize;
             int y = i / rowSize;
