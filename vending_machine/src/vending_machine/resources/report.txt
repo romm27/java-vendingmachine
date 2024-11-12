@@ -50,3 +50,6 @@ O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 à
 O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:53h.
 O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:54h.
 O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:55h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:57h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:59h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:59h.

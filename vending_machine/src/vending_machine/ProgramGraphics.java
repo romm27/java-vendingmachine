@@ -236,16 +236,19 @@ public class ProgramGraphics {
     	    switch (paymentMethods) {
     	        case card:
     	            vendingMachine.sell(selectedSlot, 999999, PaymentMethods.card);
-    	            purchaseText = String.format("%s foi comprado no crédito com sucesso!", selectedSlot.getProduct().getName());
+    	            purchaseText = String.format("%s foi comprado(a) no crédito com sucesso!", selectedSlot.getProduct().getName());
     	            break;
     	        case cash:
     	        	int payment =  Integer.valueOf(cashInput.getText()) * 100;
     	        	ArrayList<Currency> change = vendingMachine.sell(selectedSlot, payment, PaymentMethods.cash);
-    	            purchaseText = String.format("%s foi comprado em dinheiro com sucesso!\n aqui está o seu troco...", selectedSlot.getProduct().getName());
+    	            purchaseText = String.format("%s foi comprado(a) em dinheiro com sucesso!", selectedSlot.getProduct().getName());
     	            String currencyDump = "";
     	            for (Currency changeBill : change) {
     	            	currencyDump += "\n" + changeBill.getQuantity() + " x " + changeBill.getName();
 					}
+    	            if(currencyDump.length() > 0) {
+    	            	currencyDump = "\n aqui está o seu troco..." + currencyDump;
+    	            }
     	            purchaseText += currencyDump;
     	            break;
     	        default:
