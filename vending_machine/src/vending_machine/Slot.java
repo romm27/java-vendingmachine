@@ -4,6 +4,7 @@ public class Slot {
 	private int id;
 	private int quantity;
 	private Product product;
+	private ProductDisplay productDisplay;
 		
     public Slot(int id, int quantity, Product product) {
         this.id = id;
@@ -31,4 +32,12 @@ public class Slot {
     public void setQuantity(int quantity) {
     	this.quantity = quantity;
     }
+    
+    public ProductDisplay getProductDisplay() {
+		return this.productDisplay;
+	}
+
+	public void setProductDisplay(ProductDisplay productDisplay) {
+		this.productDisplay = productDisplay;
+	}
 }

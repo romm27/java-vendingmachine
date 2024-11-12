@@ -34,8 +34,9 @@ public class ProductDisplay {
 			
 			e.printStackTrace();
 		}
-		slotDisplay = new JLabel(new ImageIcon(picture));
+		slotDisplay = new JLabel(new ImageIcon(picture.getScaledInstance(60, 110, y)));
 		slotDisplay.setBounds(x, y, 60, 120);
+		slotDisplay.setSize(new Dimension(60, 120));
 		frame.add(slotDisplay);
 	}
 }

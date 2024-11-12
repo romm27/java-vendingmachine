@@ -35,7 +35,7 @@ public class ProgramGraphics {
     static JFrame frame;
     static Slot lastValidSlot = null;
 
-    private ArrayList<ProductDisplay> productDisplays = new ArrayList<ProductDisplay>();
+    private static ArrayList<ProductDisplay> productDisplays = new ArrayList<ProductDisplay>();
     
     public ProgramGraphics(VendingMachine vendingMachine) {
 			createFrame(vendingMachine);
@@ -159,6 +159,8 @@ public class ProgramGraphics {
         	
         	int[] productDisplayPos = normalizedToPixelPosition(displayInitialX + x * displayDeltaX, displayInitialY + y * displayDeltaY); 
         	ProductDisplay display = new ProductDisplay(vendingMachine.getSlot(i), productDisplayPos[0], productDisplayPos[1], frame);
+        	productDisplays.add(display);
+        	vendingMachine.getSlot(i).setProductDisplay(display);
         }
 
         frame.add(backgroundPanel);
