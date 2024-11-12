@@ -47,6 +47,7 @@ public class ProgramGraphics {
         vendingMachine = machine;
 
         BackgroundPanel backgroundPanel = new BackgroundPanel("images/machine_empty.png"); 
+        backgroundPanel.setOpaque(false);
         backgroundPanel.setLayout(null); 
         
         //Numpad offsets
@@ -306,19 +307,23 @@ public class ProgramGraphics {
     }
 
     public static int[] normalizedToPixelPosition(double normalizedX, double normalizedY) {
-        double scaleX = Toolkit.getDefaultToolkit().getScreenResolution() / 96.0; 
-        double scaleY = scaleX; 
-        
+        double screenResolutionDpi = Toolkit.getDefaultToolkit().getScreenResolution();
+
+        double standardDpi = 96.0;
+
+        double scaleFactorX = screenResolutionDpi / standardDpi;
+        double scaleFactorY = scaleFactorX; 
+
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        scaleX = gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
-        scaleY = gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
-        
-        int adjustedWindowWidth = (int) (WINDOW_WIDTH * scaleX);
-        int adjustedWindowHeight = (int) (WINDOW_HEIGHT * scaleY);
+        scaleFactorX *= gd.getDefaultConfiguration().getDefaultTransform().getScaleX();
+        scaleFactorY *= gd.getDefaultConfiguration().getDefaultTransform().getScaleY();
+
+        int adjustedWindowWidth = (int) (WINDOW_WIDTH * scaleFactorX);
+        int adjustedWindowHeight = (int) (WINDOW_HEIGHT * scaleFactorY);
 
         int pixelX = (int) Math.round(normalizedX * adjustedWindowWidth);
         int pixelY = (int) Math.round(normalizedY * adjustedWindowHeight);
-        
-        return new int[] { pixelX, pixelY };
+
+        return new int[]{pixelX, pixelY};
     }
 }
