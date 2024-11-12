@@ -41,18 +41,32 @@ public class ProductDisplay {
 		slotDisplay.setSize(new Dimension(60, 120));
 		frame.add(slotDisplay);
 		
-		if(!isEmptySlot) {
-			priceDisplay = new JLabel(String.format("R$%.2f", (float)slot.getProduct().getPrice() / 100));
-			int[] priceDisplayPos = ProgramGraphics.normalizedToPixelPosition(x + priceDisplayOffsetX, y + priceDisplayOffsetY); 
-			priceDisplay.setBounds(priceDisplayPos[0], priceDisplayPos[1], 60, 30);
-			priceDisplay.setForeground(Color.white);
-			frame.add(priceDisplay);
 
-			idDisplay = new JLabel(String.format("%02d -", slot.getProduct().getId()));
-			int[] idDisplayPos = ProgramGraphics.normalizedToPixelPosition(x + idDisplayOffsetX, y + idDisplayOffsetY); 
-			idDisplay.setBounds(idDisplayPos[0], idDisplayPos[1], 60, 30);
-			idDisplay.setForeground(Color.white);
-			frame.add(idDisplay);
+		int price = isEmptySlot? 0 : slot.getProduct().getPrice();
+		priceDisplay = new JLabel(String.format("R$%02.2f", (float)price / 100));
+		int[] priceDisplayPos = ProgramGraphics.normalizedToPixelPosition(x + priceDisplayOffsetX, y + priceDisplayOffsetY); 
+		priceDisplay.setBounds(priceDisplayPos[0], priceDisplayPos[1], 60, 30);
+		priceDisplay.setForeground(Color.white);
+		frame.add(priceDisplay);
+
+		idDisplay = new JLabel(String.format("%02d -", slot.getId()));
+		int[] idDisplayPos = ProgramGraphics.normalizedToPixelPosition(x + idDisplayOffsetX, y + idDisplayOffsetY); 
+		idDisplay.setBounds(idDisplayPos[0], idDisplayPos[1], 60, 30);
+		idDisplay.setForeground(Color.white);
+		frame.add(idDisplay);
+		
+	
+	}
+	public void checkForEmptySlot() {
+		if(!slot.hasProduct()) {
+			BufferedImage picture;
+			try {
+				picture = ImageIO.read(new File(emptySlotImagePath));
+				slotDisplay.setIcon(new ImageIcon(picture.getScaledInstance(60, 110, 0)));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

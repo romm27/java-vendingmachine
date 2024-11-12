@@ -40,10 +40,10 @@ public class VendingMachine {
                     		csvProduct[2].trim(),
                             ProductType.valueOf(csvProduct[3].trim()),
                             Integer.parseInt(csvProduct[4]),
-                            csvProduct[5]);
+                            csvProduct[6]                            		);
                     products.add(product);
                     slots.get(id).setProduct(product);
-                    slots.get(id).setQuantity(10);
+                    slots.get(id).setQuantity(Integer.parseInt(csvProduct[5]));
                     //slots.add(new Slot(id,8, product));
                     id++;
                 }

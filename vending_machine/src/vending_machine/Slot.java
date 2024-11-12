@@ -7,7 +7,7 @@ public class Slot {
 	private ProductDisplay productDisplay;
 		
     public Slot(int id, int quantity, Product product) {
-        this.id = id;
+        this.setId(id);
         this.quantity = quantity;
         this.product = product;
     }
@@ -19,6 +19,10 @@ public class Slot {
     public void decreaseQuantity() {
     	if (hasProduct()) {
     		quantity -= 1;
+    	}
+    	
+    	if(productDisplay != null) {
+    		productDisplay.checkForEmptySlot();
     	}
     }
     
@@ -39,5 +43,13 @@ public class Slot {
 
 	public void setProductDisplay(ProductDisplay productDisplay) {
 		this.productDisplay = productDisplay;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
