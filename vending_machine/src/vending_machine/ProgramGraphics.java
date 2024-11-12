@@ -13,18 +13,37 @@ public class ProgramGraphics {
     public static int WINDOW_HEIGHT = HEIGHT_RATIO * WINDOW_SIZE_MULTIPLIER;
 
     public static JFrame createFrame() {
-        JFrame frame = new JFrame("Resizable Background Frame");
+        JFrame frame = new JFrame("Vending Machine");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         BackgroundPanel backgroundPanel = new BackgroundPanel("images/machine.png"); 
         backgroundPanel.setLayout(null); 
         
-        // Test button
-        JButton button = new JButton("Sample Button");
-        int[] pos = normalizedToPixelPosition(0.5, 0.5); 
-        button.setBounds(pos[0], pos[1], 50, 50);  
-        backgroundPanel.add(button);
+        //Numpad Settings
+        float initialX = 0.785f;
+        float initialY = 0.34f;
+        float deltaX = 0.05f;
+        float deltaY = -0.025f;
+        
+        // Keypad
+        
+        char values[] = {
+        		'7', '8', '9', 
+        		'4', '5', '6',
+        		'1', '2', '3', 
+        		'>', '0', 'x' };
+        
+        for(int y = 0; y < 4; y++) {
+        	for(int x = 0; x < 3; x++) {
+        		JButton button = new JButton(String.valueOf(values[(3 - y)*3 + x]));
+                int[] pos = normalizedToPixelPosition(initialX + x * deltaX, initialY + y * deltaY); 
+                button.setBounds(pos[0], pos[1], 20, 20);
+                button.setFont(new Font("Arial", Font.PLAIN, 10));
+                button.setMargin(new Insets(0, 0, 0, 0));
+                backgroundPanel.add(button);
+            }
+        }
 
         frame.add(backgroundPanel);
         frame.setResizable(false);
