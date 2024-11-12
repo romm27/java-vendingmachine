@@ -56,6 +56,7 @@ public class CashRegister {
 
 		return changeCurrencies;
 	}
+
 	
 	public ArrayList<Currency> withdraw(int value) throws NoChangeException {
 		ArrayList<Currency> changeCurrencies = this.getCurrency(value);

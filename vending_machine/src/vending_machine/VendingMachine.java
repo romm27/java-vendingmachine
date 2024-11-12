@@ -10,12 +10,19 @@ import java.util.ArrayList;
 import vending_machine.Product.ProductType;
 
 public class VendingMachine {
-	public ArrayList<Slot> slots = new ArrayList<Slot>();
+	private ArrayList<Slot> slots = new ArrayList<Slot>();
     private ArrayList<Product> products = new ArrayList<Product>();
 	private CashRegister cashRegister = new CashRegister();
 	
+	private int catalogueSize = 12;
+	
     public VendingMachine() {
     	//TODO ler os produtos de um CSV, criar o arraylist de slots e passar como parametro do construtor
+    	
+    	for(int i = 0; i < getCatalogueSize(); i++) {
+    		slots.add(new Slot(i, 0, null));
+    	}
+    	
         // read csv
         File productsPath = new File("src" + FileSystems.getDefault().getSeparator() 
 				+ "vending_machine" + FileSystems.getDefault().getSeparator()
@@ -27,15 +34,17 @@ public class VendingMachine {
                 reader = new BufferedReader(new FileReader(productsPath));
                 int id = 0;
                 while ((line = reader.readLine()) != null) {
-                    String[] csvProduct = line.split(", ");
-                    Product product = new Product(Integer.parseInt(csvProduct[0]),
-                    		csvProduct[1],
-                    		csvProduct[2],
-                            ProductType.valueOf(csvProduct[3]),
-                            Integer.parseInt(csvProduct[4]
-                        ));
+                    String[] csvProduct = line.split(",");
+                    Product product = new Product(id,
+                    		csvProduct[0].trim(),
+                    		csvProduct[1].trim(),
+                            ProductType.valueOf(csvProduct[2].trim()),
+                            Integer.parseInt(csvProduct[3]),
+                            csvProduct[5]                            		);
                     products.add(product);
-                    slots.add(new Slot(id,8, product));
+                    slots.get(id).setProduct(product);
+                    slots.get(id).setQuantity(Integer.parseInt(csvProduct[4]));
+                    //slots.add(new Slot(id,8, product));
                     id++;
                 }
             } catch (FileNotFoundException e) {
@@ -53,7 +62,7 @@ public class VendingMachine {
             }   
     }
  
-	public void validateSale(Slot slot, int payment) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
+	public void validateSale(Slot slot, int payment, PaymentMethods selectedPaymentMethod) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
 		if (!slot.hasProduct()) {
             throw new ProductUnavailableException();
         }
@@ -64,14 +73,20 @@ public class VendingMachine {
         }
         
         int changeAmount = payment - productPrice;
-        if (!cashRegister.hasChange(changeAmount)) {
+        if (selectedPaymentMethod == PaymentMethods.cash && !cashRegister.hasChange(changeAmount)) {
         	throw new PaymentCannotBeProcessedException();
         }
     }
 	
+	public ArrayList<Currency> sell(int slot, int payment, PaymentMethods selectedPaymentMethod){
+		int slotId = -1;
+		slotId = slots.indexOf(slot);
+		return sell(slotId, payment, selectedPaymentMethod);
+	}
+	
 	public ArrayList<Currency> sell(Slot slot, int payment, PaymentMethods selectedPaymentMethod)
 			throws ProductUnavailableException, InsufficientPaymentException, NoChangeException, PaymentCannotBeProcessedException {
-		this.validateSale(slot, payment);
+		this.validateSale(slot, payment, selectedPaymentMethod);
 		
 		PaymentMethod paymentMethod = selectedPaymentMethod == PaymentMethods.cash ? new Cash() : new Card();
 		paymentMethod.processPayment(payment);
@@ -90,7 +105,20 @@ public class VendingMachine {
 		return change;
 	}
 	
+	public Slot getSlot(int id) {
+		try {
+			return slots.get(id);
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	
     public ArrayList<Slot> getSlots() {
         return slots;
     }
+
+	public int getCatalogueSize() {
+		return catalogueSize;
+	}
 }

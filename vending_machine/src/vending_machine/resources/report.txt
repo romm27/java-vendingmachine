@@ -35,3 +35,41 @@ O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 21:58h.
 O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 21:58h.
 O produto 'suco musical' custou R$ 4,90 | Data da venda: 10/11/2024 às 22:20h.
 O produto 'cerveja sabor tranquilidade' custou R$ 13,50 | Data da venda: 10/11/2024 às 22:20h.
+O produto '"fuga do laboratório"' custou R$ 11.45 | Data da venda: 12/11/2024 às 14:51h.
+O produto '"refrigerante de matte"' custou R$ 13.00 | Data da venda: 12/11/2024 às 14:51h.
+O produto '"cerveja sabor tranquilidade"' custou R$ 13.50 | Data da venda: 12/11/2024 às 15:11h.
+O produto '"cerveja sabor tranquilidade"' custou R$ 13.50 | Data da venda: 12/11/2024 às 15:11h.
+O produto '"fuga do laboratório"' custou R$ 11.45 | Data da venda: 12/11/2024 às 15:11h.
+O produto '"fuga do laboratório"' custou R$ 11.45 | Data da venda: 12/11/2024 às 15:12h.
+O produto '"fuga do laboratório"' custou R$ 11.45 | Data da venda: 12/11/2024 às 15:12h.
+O produto 'cerveja sabor tranquilidade' custou R$ 13.50 | Data da venda: 12/11/2024 às 16:31h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 17:22h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:31h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:45h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:52h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:53h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:54h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:55h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:57h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:59h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 17:59h.
+O produto 'cerveja sabor tranquilidade' custou R$ 13.50 | Data da venda: 12/11/2024 às 18:00h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:00h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:00h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:00h.
+O produto 'refrigerante fluorescente' custou R$ 9.40 | Data da venda: 12/11/2024 às 18:00h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:32h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:32h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 18:43h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:43h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:43h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:47h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 18:48h.
+O produto 'fuga do laboratório' custou R$ 11,45 | Data da venda: 12/11/2024 às 19:16h.
+O produto 'cerveja sabor tranquilidade' custou R$ 13.50 | Data da venda: 12/11/2024 às 20:36h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:41h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:42h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:43h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:44h.
+O produto 'refrigerante de matte' custou R$ 13.00 | Data da venda: 12/11/2024 às 20:46h.
+O produto 'fuga do laboratório' custou R$ 11.45 | Data da venda: 12/11/2024 às 20:46h.

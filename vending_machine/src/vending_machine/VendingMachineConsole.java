@@ -80,7 +80,7 @@ public class VendingMachineConsole {
 						errorOnPaymentMsg();
 					}
 
-				} else if (option == slotQuantity) {					
+				} else if (option == 0) {					
 					goodByeMsg();
 					menu = false;
 
@@ -121,11 +121,13 @@ public class VendingMachineConsole {
         ArrayList<Slot> slots = vendingMachine.getSlots();
         int i = 1;
         for (Slot slot : slots) {
-            System.out.printf("[ %d ]\t%s (%s) - R$ %s\n", i, capitalizeFirstLetter(slot.getProduct().getName()), slot.getProduct().getBrand(), slot.getProduct().formatToCurrency());
+            if(slot.getProduct() != null) {
+            	System.out.printf("[ %d ]\t%s (%s) - R$ %s\n", i, capitalizeFirstLetter(slot.getProduct().getName()), slot.getProduct().getBrand(), slot.getProduct().formatToCurrency());
+            }
             i++;
         }
         
-        System.out.printf("[ %d ]\tSair\n", i);
+        System.out.printf("[ %d ]\tSair\n", 0);
         System.out.print("\nDigite a opção desejada: ");
 	}
 	
