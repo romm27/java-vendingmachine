@@ -35,15 +35,15 @@ public class VendingMachine {
                 int id = 0;
                 while ((line = reader.readLine()) != null) {
                     String[] csvProduct = line.split(",");
-                    Product product = new Product(Integer.parseInt(csvProduct[0]),
+                    Product product = new Product(id,
+                    		csvProduct[0].trim(),
                     		csvProduct[1].trim(),
-                    		csvProduct[2].trim(),
-                            ProductType.valueOf(csvProduct[3].trim()),
-                            Integer.parseInt(csvProduct[4]),
-                            csvProduct[6]                            		);
+                            ProductType.valueOf(csvProduct[2].trim()),
+                            Integer.parseInt(csvProduct[3]),
+                            csvProduct[5]                            		);
                     products.add(product);
                     slots.get(id).setProduct(product);
-                    slots.get(id).setQuantity(Integer.parseInt(csvProduct[5]));
+                    slots.get(id).setQuantity(Integer.parseInt(csvProduct[4]));
                     //slots.add(new Slot(id,8, product));
                     id++;
                 }
