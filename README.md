@@ -1,13 +1,13 @@
 # Máquina de vendas
-New version of the vending machine, a classic assignment from the algorithms course in the first semester of computer science at PUCPR, now made in Java with a new graphic interface. Come get your fuzzy drinks!
-The program has both a console-only and a graphic interface version.
+Nova versão da Máquina de Vendas, um clássico trabalho da disciplina de Raciocínio Algoritmico, do primeiro período de ciência da computação da PUCPR, agora feito em java, para a disciplina de Programação Orientada a Objetos.
+O programa conta tanto com uma versao console, quanto a versão com a interface gráfica.
 
 ![Captura de tela 2024-11-12 213742](https://github.com/user-attachments/assets/96219532-ede4-4b8e-983f-96efe7fb7efd)
 
 ## Produtos
-Os produtos da máquina de vendas foram baseadas em trabalhos passados da equipe, além de piadas internas.
+Os produtos da máquina de vendas foram baseados em trabalhos passados da equipe, além de piadas internas.
 
-Fuga do laboratório é o refrigerante roxo fluorescente do temido vilão Dr. Nefarious, do jogo da [Capivara Lysa](https://github.com/ana-borowsky/jogo_as_aventuras_de_lysa)<br>
+Fuga do laboratório é o refrigerante roxo fluorescente do temido vilão Dr. Nefarious, do jogo da [Capivara Lysa](https://github.com/ana-borowsky/jogo_as_aventuras_de_lysa)<br><br>
 <img width="450" src="3d_models/canvas/fuga.png"><br><br>
 Este energético vai dar um brilho na sua mente. Baseado no trabalho de web [Glow.tf](https://github.com/ana-borowsky/glowtf)<br><br>
 <img width="450" src="3d_models/canvas/glowtf.png"><br><br>
@@ -15,9 +15,9 @@ Hemisfério Invertido é uma bebida que não matará a sua sede. Baseado em um e
 <img width="450" src="3d_models/canvas/hemis.png"><br><br>
 O energético incrível te deixará preparado para virar qualquer madrugada fazendo trabalhos ou estudando para as provas.<br><br>
 <img width="450" src="3d_models/canvas/incrivel.png"><br><br>
-Se delicie com essa saborosa bebida sabor mate, da Lysa, do [jogo](https://github.com/ana-borowsky/jogo_as_aventuras_de_lysa)<br><br>
+Se delicie com essa saborosa bebida sabor mate, da Lysa, do jogo [As Aventuras de Lysa](https://github.com/ana-borowsky/jogo_as_aventuras_de_lysa)<br><br>
 <img width="450" src="3d_models/canvas/lysa.png"><br><br>
-Nosso refrigerante matemático te fará perder as contas de quantas vezes já quis consumi-lo. Baseado no [jogo](https://github.com/ana-borowsky/mathmagik). E sim, o erro é proposital.<br>
+Nosso refrigerante matemático te fará perder as contas de quanto dinheiro já gastou para tomá-lo. Baseado no [jogo](https://github.com/ana-borowsky/mathmagik). E sim, o erro é proposital.<br><br>
 <img width="450" src="3d_models/canvas/mathmagik.png"><br><br>
 Pois é Café é uma deliciosa bebida gelada. Não recomendada para pessoas alérgicas ou com sensibilidade a alimentos antiderivados do leite.<br><br>
 <img width="450" src="3d_models/canvas/poise.png"><br><br>
