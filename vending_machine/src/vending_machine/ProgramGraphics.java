@@ -59,14 +59,11 @@ public class ProgramGraphics {
                 '7', '8', '9'
                  };
        
-        
-
         productSelectedDisplay.setBounds(numpadInitialX + 15, numpadInitialY - 80, 50, 20);
         productSelectedDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         productSelectedDisplay.setForeground(Color.black);
         backgroundPanel.add(productSelectedDisplay);
         
-
         creditButton.setBounds(numpadInitialX, numpadInitialY + 105, 60, 20);
         creditButton.setFont(new Font("Arial", Font.PLAIN, 10));
         creditButton.setMargin(new Insets(0, 0, 0, 0));
@@ -79,7 +76,6 @@ public class ProgramGraphics {
         });
         backgroundPanel.add(creditButton);
         
-
         cashButton.setBounds(numpadInitialX, numpadInitialY + 150, 60, 20);
         cashButton.setFont(new Font("Arial", Font.PLAIN, 10));
         cashButton.setMargin(new Insets(0, 0, 0, 0));
@@ -92,13 +88,11 @@ public class ProgramGraphics {
         });
         backgroundPanel.add(cashButton);
         
-
         cashSymbolDisplay.setBounds(numpadInitialX + 5, numpadInitialY + 150 + 25, 50, 20);
         cashSymbolDisplay.setFont(new Font("Arial", Font.PLAIN, 25));
         cashSymbolDisplay.setForeground(Color.white);
         backgroundPanel.add(cashSymbolDisplay);
         
-
         cashInput.setBounds(numpadInitialX + 20, numpadInitialY + 150 + 25, 40, 20);
         cashInput.setFont(new Font("Arial", Font.PLAIN, 15));
         cashInput.setPreferredSize(new Dimension(200, 30));
@@ -274,7 +268,6 @@ public class ProgramGraphics {
     	creditButton.setEnabled(status);
     	cashButton.setEnabled(status);
     	cashInput.setEnabled(status);
-
     }
 
     private static class BackgroundPanel extends JPanel {
