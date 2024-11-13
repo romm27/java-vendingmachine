@@ -22,15 +22,6 @@ public class CashRegister {
 		currencies.put(10000, new Currency(10, "cem reais", 10000, CurrencyType.bill));
 	}
 	
-//	public static void main(String[] args) throws NoChangeException {
-//		CashRegister cashRegister = new CashRegister();
-//		ArrayList<Currency> change = cashRegister.withdraw(39585);
-//		
-//		for (Currency changeBill : change) {
-//			System.out.println(changeBill.getQuantity() + " x " + changeBill.getName());
-//		}
-//	}
-//	
 	public ArrayList<Currency> getCurrency(int value) throws NoChangeException {
 		ArrayList<Currency> changeCurrencies = new ArrayList<Currency>();
 		int remainingValue = value;
