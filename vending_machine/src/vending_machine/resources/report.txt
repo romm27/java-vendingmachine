@@ -101,3 +101,9 @@ O produto 'suco musical' custou R$ 4,90 | Data da venda: 12/11/2024 às 21:41h.
 O produto 'cerveja sabor tranquilidade' custou R$ 13,50 | Data da venda: 12/11/2024 às 22:02h.
 O produto 'fuga do laboratorio' custou R$ 11,45 | Data da venda: 12/11/2024 às 22:02h.
 O produto 'cerveja sabor tranquilidade' custou R$ 13,50 | Data da venda: 12/11/2024 às 22:03h.
+O produto 'refrigerante de mate' custou R$ 13.00 | Data da venda: 13/11/2024 às 07:37h.
+O produto 'cerveja sabor tranquilidade' custou R$ 13.50 | Data da venda: 13/11/2024 às 07:37h.
+O produto 'hemisferio invertido' custou R$ 10.50 | Data da venda: 13/11/2024 às 07:37h.
+O produto 'hemisferio invertido' custou R$ 10.50 | Data da venda: 13/11/2024 às 07:37h.
+O produto 'fuga do laboratorio' custou R$ 11.45 | Data da venda: 13/11/2024 às 07:37h.
+O produto 'fuga do laboratorio' custou R$ 11.45 | Data da venda: 13/11/2024 às 07:37h.

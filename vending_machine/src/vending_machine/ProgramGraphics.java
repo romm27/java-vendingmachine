@@ -255,6 +255,10 @@ public class ProgramGraphics {
     	} catch (NumberFormatException e) {
     		purchaseText = "Erro: Por favor insira um valor válido!";
     		output = ":|";
+    	} catch (PaymentCannotBeProcessedException e) {
+    	    purchaseText = "Erro inesperado: " + e.getMessage();
+    	    output = ":o";
+    	    e.printStackTrace();
     	} catch (Exception e) {
     	    purchaseText = "Erro inesperado: " + e.getMessage();
     	    output = ":o";
