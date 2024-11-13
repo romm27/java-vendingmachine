@@ -2,7 +2,7 @@
 Nova versão da Máquina de Vendas, um clássico trabalho da disciplina de Raciocínio Algoritmico, do primeiro período de ciência da computação da PUCPR, agora feito em java, para a disciplina de Programação Orientada a Objetos.
 O programa conta tanto com uma versao console, quanto a versão com a interface gráfica.
 
-![Captura de tela 2024-11-12 213742](https://github.com/user-attachments/assets/96219532-ede4-4b8e-983f-96efe7fb7efd)
+![git](https://github.com/user-attachments/assets/d9905609-d678-4c78-8052-317852823b8c)
 
 ## Produtos
 Os produtos da máquina de vendas foram baseados em trabalhos passados da equipe, além de piadas internas.
