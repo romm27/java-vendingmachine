@@ -17,13 +17,11 @@ public class VendingMachine {
 	private int catalogueSize = 12;
 	
     public VendingMachine() {
-    	//TODO ler os produtos de um CSV, criar o arraylist de slots e passar como parametro do construtor
     	
     	for(int i = 0; i < getCatalogueSize(); i++) {
     		slots.add(new Slot(i, 0, null));
     	}
     	
-        // read csv
         File productsPath = new File("src" + FileSystems.getDefault().getSeparator() 
 				+ "vending_machine" + FileSystems.getDefault().getSeparator()
 				+ "resources" + FileSystems.getDefault().getSeparator() + "products.csv");
@@ -44,7 +42,7 @@ public class VendingMachine {
                     products.add(product);
                     slots.get(id).setProduct(product);
                     slots.get(id).setQuantity(Integer.parseInt(csvProduct[4]));
-                    //slots.add(new Slot(id,8, product));
+
                     id++;
                 }
             } catch (FileNotFoundException e) {
