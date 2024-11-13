@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
+import java.util.Random;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ProgramGraphics {
@@ -208,6 +210,13 @@ public class ProgramGraphics {
     	}
     }
     
+    private static String getRandomSmile() {
+        String[] smiles = new String[] {":D", "xD", ":)", ":>", "8)", ":V", ":P"};
+        Random random = new Random();
+        int index = random.nextInt(smiles.length);
+        return smiles[index]; 
+    }
+    
     private static void onPurchase(Slot selectedSlot, PaymentMethods paymentMethods) {
     	String purchaseText = "";
     	try {
@@ -215,13 +224,13 @@ public class ProgramGraphics {
     	        case card:
     	            vendingMachine.sell(selectedSlot, 999999, PaymentMethods.card);
     	            purchaseText = String.format("%s foi comprado(a) no crédito com sucesso!", selectedSlot.getProduct().getName());
-    	            output = ":D";
+    	            output = getRandomSmile();
     	            break;
     	        case cash:
     	        	int payment =  Math.round(Float.valueOf(cashInput.getText().replace(',', '.'))*100);
     	        	ArrayList<Currency> change = vendingMachine.sell(selectedSlot, payment, PaymentMethods.cash);
     	            purchaseText = String.format("%s foi comprado(a) em dinheiro com sucesso!", selectedSlot.getProduct().getName());
-    	            output = ":D";
+    	            output = getRandomSmile();
     	            String currencyDump = "";
     	            for (Currency changeBill : change) {
     	            	currencyDump += "\n" + changeBill.getQuantity() + " x " + changeBill.getName();
@@ -242,7 +251,7 @@ public class ProgramGraphics {
     	    output = ":(";
     	} catch (InsufficientPaymentException e) {
     	    purchaseText = "Erro: Dinheiro insuficiente :/";
-    	    output = ":/";
+    	    output = ":c";
     	} catch (NumberFormatException e) {
     		purchaseText = "Erro: Por favor insira um valor válido!";
     		output = ":|";
