@@ -62,7 +62,7 @@ public class VendingMachine {
             }   
     }
  
-	public void validateSale(Slot slot, int payment, PaymentMethods selectedPaymentMethod) throws PaymentCannotBeProcessedException, ProductUnavailableException, InsufficientPaymentException {
+	public void validateSale(Slot slot, int payment, PaymentMethods selectedPaymentMethod) throws ProductUnavailableException, InsufficientPaymentException, NoChangeException {
 		if (!slot.hasProduct()) {
             throw new ProductUnavailableException();
         }
@@ -74,7 +74,7 @@ public class VendingMachine {
         
         int changeAmount = payment - productPrice;
         if (selectedPaymentMethod == PaymentMethods.cash && !cashRegister.hasChange(changeAmount)) {
-        	throw new PaymentCannotBeProcessedException();
+        	throw new NoChangeException();
         }
     }
 	
