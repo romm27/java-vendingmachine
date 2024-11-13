@@ -39,7 +39,7 @@ public class ProductDisplay {
 		int price = isEmptySlot ? 0 : slot.getProduct().getPrice();
 		priceDisplay = new JLabel(String.format("R$%02.2f", (float) price / 100));
 		
-		int priceX = 20;
+		int priceX = 15;
 		int priceY = 110;
 		priceDisplay.setBounds(x + priceX, y + priceY, 60, 30);
 		priceDisplay.setForeground(Color.white);
@@ -47,7 +47,7 @@ public class ProductDisplay {
 
 		idDisplay = new JLabel(String.format("%02d", slot.getId()));
 
-		int idX = priceX - 20;
+		int idX = priceX - 15;
 		int idY = priceY + 0;
 		idDisplay.setBounds(x + idX, y + idY, 60, 30);
 		idDisplay.setForeground(Color.white);
