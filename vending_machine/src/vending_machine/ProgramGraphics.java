@@ -211,7 +211,7 @@ public class ProgramGraphics {
     }
     
     private static String getRandomSmile() {
-        String[] smiles = new String[] {":D", "xD", ":)", ":>", "8)", ":V", ":P"};
+        String[] smiles = new String[] {":D", "xD", ":)", ":>", ":V", ":P", ":]", ";)"};
         Random random = new Random();
         int index = random.nextInt(smiles.length);
         return smiles[index]; 
